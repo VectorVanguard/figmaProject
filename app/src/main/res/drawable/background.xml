@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- 1. Основной белый фон -->
+    <item>
+        <shape android:shape="rectangle">
+            <solid android:color="#FFFFFF"/>
+        </shape>
+    </item>
+
+    <!-- 2. Жёлтая полоса сверху (высота 8dp) -->
+            <item
+                android:height="120dp"
+                android:gravity="top">
+            <shape android:shape="rectangle">
+                <solid android:color="#FFD700"/>  <!-- Золотисто-жёлтый -->
+            </shape>
+        </item>
+    </layer-list>

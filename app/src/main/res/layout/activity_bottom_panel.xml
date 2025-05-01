@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="50dp"
+    android:layout_gravity="bottom"
+    android:orientation="horizontal"
+    android:background="#E95322"
+    android:gravity="center"
+    android:paddingHorizontal="10dp"
+    android:elevation="8dp"
+    android:id="@+id/buttonPanel">
+
+    <ImageView
+        android:id="@+id/nav_home"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:src="@drawable/ic_home"
+        android:contentDescription="Home"
+        android:padding="12dp"
+        app:tint="@android:color/white" />
+
+    <ImageView
+        android:id="@+id/nav_food"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:src="@drawable/ic_food"
+        android:contentDescription="Food"
+        android:padding="12dp"
+        app:tint="@android:color/white" />
+
+    <ImageView
+        android:id="@+id/nav_fav"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:src="@drawable/ic_heart"
+        android:contentDescription="Favorites"
+        android:padding="12dp"
+        app:tint="@android:color/white" />
+
+    <ImageView
+        android:id="@+id/nav_list"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:src="@drawable/ic_list"
+        android:contentDescription="Orders"
+        android:padding="12dp"
+        app:tint="@android:color/white" />
+
+    <ImageView
+        android:id="@+id/nav_support"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:src="@drawable/ic_support"
+        android:contentDescription="Support"
+        android:padding="12dp"
+        app:tint="@android:color/white" />
+</LinearLayout>
