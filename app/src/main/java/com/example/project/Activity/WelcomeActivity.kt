@@ -1,10 +1,10 @@
-package com.example.project
+package com.example.project.Activity
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.widget.Button
+import com.example.project.R
 
 class WelcomeActivity : AppCompatActivity() {
 
@@ -22,6 +22,9 @@ class WelcomeActivity : AppCompatActivity() {
         }
 
         btnSignUp.setOnClickListener {
+            val intent = Intent(this, RegActivity::class.java)
+            startActivity(intent)
+            finish()
         }
     }
 }

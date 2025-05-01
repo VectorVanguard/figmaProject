@@ -1,4 +1,5 @@
-package com.example.project
+package com.example.project.Activity
+import android.R
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View

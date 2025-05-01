@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="black">#FF000000</color>
-    <color name="white">#FFFFFFFF</color>
+    <color name="white">#FFFFFF</color>
+    <color name="shadow_black">#BE545454</color>
     <color name="mainLayoutBackground">#F3C957</color>
+    <color name="organe">#E95322</color>
+    <color name =  "bottom_backround">#F5CB58</color>
 </resources>
