@@ -1,6 +1,5 @@
 package com.example.project.Activity
 
-import android.R
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler

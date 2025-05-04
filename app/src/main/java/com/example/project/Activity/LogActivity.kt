@@ -10,9 +10,7 @@ import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
-import com.example.project.Database.AppDatabase
 import com.example.project.R
-import com.example.project.Repositories.UserRepository
 import kotlinx.coroutines.launch
 
 class LogActivity : AppCompatActivity(){
@@ -20,7 +18,6 @@ class LogActivity : AppCompatActivity(){
     private lateinit var emailEditText: EditText
     private lateinit var passwordEditText: EditText
     private lateinit var loginButton: Button
-    private lateinit var repository: UserRepository
 
     @SuppressLint("ClickableViewAccessibility")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -52,35 +49,6 @@ class LogActivity : AppCompatActivity(){
             }
             false
         }
-
-        val db = AppDatabase.getDatabase(this)
-        repository = UserRepository(db.userDao())
-
-        loginButton.setOnClickListener {
-            val email = emailEditText.text.toString().trim()
-            val password = passwordEditText.text.toString().trim()
-
-            if (email.isEmpty() || password.isEmpty()) {
-                Toast.makeText(this, "Please fill in all fields", Toast.LENGTH_SHORT).show()
-                return@setOnClickListener
-            }
-
-            lifecycleScope.launch {
-                val isAuthenticated = repository.authenticate(email, password)
-                if (isAuthenticated) {
-                    runOnUiThread {
-                        Toast.makeText(this@LogActivity, "Login successful", Toast.LENGTH_SHORT).show()
-                        startActivity(Intent(this@LogActivity, MainActivity::class.java))
-                        finish()
-                    }
-                } else {
-                    runOnUiThread {
-                        Toast.makeText(this@LogActivity, "Invalid credentials", Toast.LENGTH_SHORT).show()
-                    }
-                }
-            }
-        }
-
     }
 
 }
