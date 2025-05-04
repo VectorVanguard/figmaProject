@@ -11,7 +11,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout"
         android:layout_width="match_parent"
-        android:layout_height="119dp"
+        android:layout_height="140dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -107,9 +107,7 @@
             android:paddingEnd="15dp"
             android:textColor="#3B1B0E"
             android:textColorHint="@color/shadow_black"
-            android:textSize="16sp"
-
-            />
+            android:textSize="16sp" />
 
         <TextView
             android:id="@+id/forgetPassword"
@@ -133,6 +131,7 @@
 
 
         <TextView
+            android:id="@id/goToSignUp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"

@@ -10,7 +10,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout"
         android:layout_width="match_parent"
-        android:layout_height="100dp"
+        android:layout_height="140dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -146,14 +146,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/edittext_background"
+            android:clickable="true"
+            android:focusable="false"
             android:hint="DD / MM /YYY"
             android:inputType="datetime"
             android:textColor="#3B1B0E"
             android:textColorHint="@color/shadow_black"
-            android:textSize="16sp"
-            android:focusable="false"
-            android:clickable="true"
-            />
+            android:textSize="16sp" />
 
 
         <TextView
@@ -181,7 +180,7 @@
             android:id="@+id/goToLogIn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="2dp"
             android:gravity="center"
             android:text="Already have an account? Log in"
             android:textColor="@android:color/holo_red_dark"
