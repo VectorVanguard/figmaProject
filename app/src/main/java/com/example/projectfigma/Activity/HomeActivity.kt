@@ -3,6 +3,7 @@ package com.example.projectfigma.Activity
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.example.projectfigma.Fragments.BottomPanelFragment
+import com.example.projectfigma.Fragments.FoodCategoryFragment
 import com.example.projectfigma.R
 
 class HomeActivity : AppCompatActivity() {

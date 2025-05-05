@@ -10,7 +10,6 @@ import com.example.projectfigma.databinding.FragmentFoodCategoryCardBinding
 
 class FoodCategoryFragment : Fragment() {
 
-    // ViewBinding
     private var _binding: FragmentFoodCategoryCardBinding? = null
     private val binding get() = _binding!!
 

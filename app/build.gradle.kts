@@ -8,6 +8,8 @@ android {
     namespace = "com.example.projectfigma"
     compileSdk = 35
 
+
+
     defaultConfig {
         applicationId = "com.example.projectfigma"
         minSdk = 24
