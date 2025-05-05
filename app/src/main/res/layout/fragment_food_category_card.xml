@@ -4,37 +4,29 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="horizontal"
-        android:paddingHorizontal="70dp"
-        android:id="@+id/buttonPanel"
-        android:paddingVertical="5dp"
-        >
-
-
+        android:id="@+id/buttonPanel">
     <ImageView
         android:id="@+id/snacks"
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="1"
-        android:layout_marginEnd="10dp"
+        android:layout_marginEnd="20dp"
         app:srcCompat="@drawable/snacks" />
 
     <ImageView
         android:id="@+id/meal"
         android:layout_width="0dp"
-
         android:layout_height="match_parent"
         android:layout_weight="1"
-        android:layout_marginEnd="10dp"
+        android:layout_marginEnd="20dp"
         app:srcCompat="@drawable/meal" />
 
     <ImageView
         android:id="@+id/vegan"
         android:layout_width="0dp"
-
         android:layout_height="match_parent"
         android:layout_weight="1"
-        android:layout_marginEnd="10dp"
+        android:layout_marginEnd="20dp"
         app:srcCompat="@drawable/vegan" />
 
     <ImageView
@@ -42,7 +34,7 @@
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="1"
-        android:layout_marginEnd="10dp"
+        android:layout_marginEnd="20dp"
         app:srcCompat="@drawable/dessert" />
 
     <ImageView
@@ -50,6 +42,6 @@
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="1"
-        android:layout_marginEnd="10dp"
+
         app:srcCompat="@drawable/drinks" />
     </LinearLayout>
