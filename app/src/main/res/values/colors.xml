@@ -6,4 +6,5 @@
     <color name="mainLayoutBackground">#F3C957</color>
     <color name="organe">#E95322</color>
     <color name =  "bottom_backround">#F5CB58</color>
+    <color name="dividing_line">#FFD8C7</color>
 </resources>
