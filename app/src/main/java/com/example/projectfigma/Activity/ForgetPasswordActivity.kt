@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.projectfigma.DataBase.DataBase
+import com.example.projectfigma.Fragments.BottomPanelFragment
 import com.example.projectfigma.R
 import com.example.projectfigma.Util.Password
 import com.example.projectfigma.databinding.ActivityForgetPasswordBinding
@@ -22,7 +23,7 @@ class ForgetPasswordActivity : AppCompatActivity() {
         val dateBase = DataBase.getDb(this)
 
         supportFragmentManager.beginTransaction()
-            .replace(R.id.buttonPanel, BottomPanelActivity())
+            .replace(R.id.buttonPanel, BottomPanelFragment())
             .commit()
 
         Password.setIsVisable(binding.passwordEditText)
