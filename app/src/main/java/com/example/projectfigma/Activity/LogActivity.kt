@@ -8,6 +8,7 @@ import com.example.projectfigma.DataBase.DataBase
 import com.example.projectfigma.Fragments.BottomPanelFragment
 import com.example.projectfigma.R
 import com.example.projectfigma.Util.Password
+import com.example.projectfigma.Util.StatusBar
 import com.example.projectfigma.databinding.ActivityLogBinding
 
 class LogActivity : AppCompatActivity() {
@@ -20,7 +21,7 @@ class LogActivity : AppCompatActivity() {
 
         binding = ActivityLogBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
+        StatusBar.hideStatusBar(window)
         val dataBase = DataBase.getDb(this)
 
         supportFragmentManager.beginTransaction()
@@ -83,7 +84,8 @@ class LogActivity : AppCompatActivity() {
                     } else {
                         Toast.makeText(this, "Вход успешен", Toast.LENGTH_SHORT).show()
 
-                        val intent = Intent(this, MainActivity::class.java)
+                        val intent = Intent(this, HomeActivity::class.java)
+                        intent.putExtra("user_email", binding.emailEditText.text.toString())
                         startActivity(intent)
                         finish()
                     }

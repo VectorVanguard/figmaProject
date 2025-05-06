@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="75dp"
+    android:orientation="horizontal"
+    android:gravity="center_vertical"
+    android:clickable="true"
+    android:foreground="?attr/selectableItemBackgroundBorderless"
+    android:paddingStart="16dp"
+    android:paddingEnd="16dp">
+
+    <!-- ЗДЕСЬ id imgIcon -->
+    <ImageView
+        android:id="@+id/imgIcon"
+        android:layout_width="28dp"
+        android:layout_height="28dp"
+        android:src="@drawable/ic_profile_placeholder" />
+
+    <!-- ЗДЕСЬ id tvTitle -->
+    <TextView
+        android:id="@+id/tvTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:text="Title"
+        android:textSize="18sp"
+        android:textColor="@android:color/white" />
+</LinearLayout>
