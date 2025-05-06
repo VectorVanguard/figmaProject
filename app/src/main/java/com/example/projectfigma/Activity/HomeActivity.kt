@@ -86,8 +86,8 @@ class HomeActivity : AppCompatActivity(),
             .commitNow()
 
         profileMenu.setUserData(
-            name = user.name ?: "John Smith",
-            email = user.gmail ?: "loremipsum@email.com",
+            name = user.name,
+            email = user.gmail,
             avatarRes = R.drawable.ic_profile_placeholder
         )
 
