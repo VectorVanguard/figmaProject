@@ -1,0 +1,20 @@
+<!-- res/values/styles.xml -->
+<resources>
+
+    <!-- Базовый стайл индикатора -->
+    <style name="IndicatorBase">
+        <item name="android:layout_width">16dp</item>
+        <item name="android:layout_height">4dp</item>
+    </style>
+
+    <!-- Не выбранный -->
+    <style name="IndicatorUnselected" parent="IndicatorBase">
+        <item name="android:background">@drawable/indicator_unselected</item>
+    </style>
+
+    <!-- Выбранный -->
+    <style name="IndicatorSelected" parent="IndicatorBase">
+        <item name="android:background">@drawable/indicator_selected</item>
+    </style>
+
+</resources>

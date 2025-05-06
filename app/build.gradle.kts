@@ -52,4 +52,8 @@ dependencies {
     // Glide или Picasso для загрузки картинок из БД или интернета
     implementation ("com.github.bumptech.glide:glide:4.13.2")
     kapt ("com.github.bumptech.glide:compiler:4.13.2")
+    implementation("androidx.viewpager2:viewpager2:1.1.0")
+    implementation ("com.google.android.material:material:1.8.0")
+    implementation ("io.coil-kt:coil:2.2.2") // или Glide для картинок
+    implementation ("androidx.lifecycle:lifecycle-livedata-ktx:2.6.1")
 }

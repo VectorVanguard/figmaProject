@@ -6,33 +6,27 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
+import coil.load
 import com.example.projectfigma.Entites.BestSeller
 import com.example.projectfigma.R
 
-class BestSellerAdapter(
-    private var items: List<BestSeller>,
-    private val onClick: (BestSeller) -> Unit
-) : RecyclerView.Adapter<BestSellerAdapter.VH>() {
+class PromoAdapter(private var items: List<BestSeller>) :
+    RecyclerView.Adapter<PromoAdapter.VH>() {
 
     inner class VH(view: View) : RecyclerView.ViewHolder(view) {
-        private val ivFood: ImageView = view.findViewById(R.id.ivFood)
-        private val tvPrice: TextView = view.findViewById(R.id.tvPrice)
+        private val image: ImageView = view.findViewById(R.id.promo_image)
+        private val title: TextView = view.findViewById(R.id.title)
+        private val discount: TextView = view.findViewById(R.id.discount)
 
         fun bind(item: BestSeller) {
-            tvPrice.text = String.format("$%.2f", item.price)
-            Glide.with(ivFood.context)
-                .load(item.imageUri)
-                .centerCrop()
-                .into(ivFood)
-
-            itemView.setOnClickListener { onClick(item) }
+            title.text = "Experience our delicious new dish"
+            discount.text = "${30}% OFF"
         }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VH {
         val v = LayoutInflater.from(parent.context)
-            .inflate(R.layout.item_best_seller, parent, false)
+            .inflate(R.layout.item_banner, parent, false)
         return VH(v)
     }
 
@@ -40,10 +34,11 @@ class BestSellerAdapter(
         holder.bind(items[position])
     }
 
+    override fun getItemCount(): Int = items.size
+
+    /** Вызываем из Activity/Fragment при получении новых данных */
     fun updateList(newItems: List<BestSeller>) {
         items = newItems
         notifyDataSetChanged()
     }
-
-    override fun getItemCount() = items.size
 }
