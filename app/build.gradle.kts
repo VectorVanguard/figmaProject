@@ -44,4 +44,12 @@ dependencies {
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.2.1")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.6.1")
+
+    // RecyclerView
+    implementation("androidx.recyclerview:recyclerview:1.2.1")
+    // CardView для скруглённых углов карточек
+    implementation ("androidx.cardview:cardview:1.0.0")
+    // Glide или Picasso для загрузки картинок из БД или интернета
+    implementation ("com.github.bumptech.glide:glide:4.13.2")
+    kapt ("com.github.bumptech.glide:compiler:4.13.2")
 }

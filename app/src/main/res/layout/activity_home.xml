@@ -128,16 +128,16 @@
                 android:name="com.example.projectfigma.Fragments.FoodCategoryFragment"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                tools:layout="@layout/fragment_food_category_card" />
+                tools:layout="@layout/fragment_food_category_card"
+                />
 
         </FrameLayout>
 
         <FrameLayout
             android:id="@+id/dividingLine"
             android:layout_width="match_parent"
-            android:layout_height="25dp"
+            android:layout_height="15dp"
             android:paddingTop="10dp"
-
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/food_category_frame">
@@ -148,6 +148,25 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 tools:layout="@layout/fragment_dividing_line" />
+
+        </FrameLayout>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="160dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/dividingLine"
+            app:layout_constraintVertical_bias="0.0">
+
+            <fragment
+                android:id="@+id/bestSellerFragment"
+                android:name="com.example.projectfigma.Fragments.BestSeller"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:layout="@layout/fragment_best_seller" />
 
         </FrameLayout>
 
