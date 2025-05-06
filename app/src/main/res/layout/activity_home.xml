@@ -152,6 +152,7 @@
         </FrameLayout>
 
         <FrameLayout
+            android:id="@+id/frameLayout"
             android:layout_width="match_parent"
             android:layout_height="160dp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -167,6 +168,23 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 tools:layout="@layout/fragment_best_seller" />
+
+        </FrameLayout>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/frameLayout">
+
+            <fragment
+                android:id="@+id/banner_include"
+                android:name="com.example.projectfigma.Fragments.BannerFood"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                tools:layout="@layout/fragment_banner_food" />
 
         </FrameLayout>
 
