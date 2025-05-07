@@ -43,14 +43,13 @@ class HomeActivity : AppCompatActivity(),
             user = userDao.getUserByEmail(email)
         }
 
-        val items: List<BestSeller> = dao.getAll()
-        findViewById<RecyclerView>(R.id.rvBestSellers).apply {
+        val rv = findViewById<RecyclerView>(R.id.rvBestSellers).apply {
             layoutManager = LinearLayoutManager(
                 this@HomeActivity,
                 LinearLayoutManager.HORIZONTAL,
                 false
             )
-            adapter = BestSellerAdapter(items) { item ->
+            adapter = BestSellerAdapter(emptyList()) { item: BestSeller ->
                 Toast.makeText(
                     this@HomeActivity,
                     "Clicked: ${item.price}",
@@ -58,7 +57,9 @@ class HomeActivity : AppCompatActivity(),
                 ).show()
             }.also { this@HomeActivity.adapter = it }
         }
-
+        dao.getAllV().observe(this) { list ->
+            adapter.updateList(list)
+        }
         supportFragmentManager
             .beginTransaction()
             .replace(R.id.buttonPanel, BottomPanelFragment())
