@@ -8,10 +8,10 @@ import androidx.drawerlayout.widget.DrawerLayout
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.projectfigma.Adapters.BestSellerAdapter
-import com.example.projectfigma.DAO.BestSellerDao
+import com.example.projectfigma.DAO.DishesDao
 import com.example.projectfigma.DAO.UserDao
 import com.example.projectfigma.DataBase.DataBase
-import com.example.projectfigma.Entites.BestSeller
+import com.example.projectfigma.Entites.Dishes
 import com.example.projectfigma.Entites.User
 import com.example.projectfigma.Fragments.*
 import com.example.projectfigma.R
@@ -21,7 +21,7 @@ class HomeActivity : AppCompatActivity(),
     HeaderButtonsFragment.Listener {
 
     private lateinit var adapter: BestSellerAdapter
-    private lateinit var dao: BestSellerDao
+    private lateinit var dao: DishesDao
     private lateinit var userDao: UserDao
     private lateinit var drawer: DrawerLayout
 
@@ -49,7 +49,7 @@ class HomeActivity : AppCompatActivity(),
                 LinearLayoutManager.HORIZONTAL,
                 false
             )
-            adapter = BestSellerAdapter(emptyList()) { item: BestSeller ->
+            adapter = BestSellerAdapter(emptyList()) { item: Dishes ->
                 Toast.makeText(
                     this@HomeActivity,
                     "Clicked: ${item.price}",
@@ -58,7 +58,7 @@ class HomeActivity : AppCompatActivity(),
             }.also { this@HomeActivity.adapter = it }
         }
 
-        dao.getAllV().observe(this) { list ->
+        dao.getBestSellers().observe(this) { list ->
             adapter.updateList(list)
         }
 
