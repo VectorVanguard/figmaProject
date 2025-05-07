@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/header_buttons_container"
+    android:layout_width="wrap_content"
+    android:layout_height="30dp"
+    android:orientation="horizontal"
+    android:gravity="center_vertical|end"
+    android:paddingEnd="16dp">
+
+    <!-- 1) Cart -->
+    <ImageView
+        android:id="@+id/cart_button"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginEnd="12dp"
+        android:src="@drawable/cart_image"
+        android:contentDescription="@string/cart" />
+
+    <!-- 2) Notifications -->
+    <ImageView
+        android:id="@+id/notification_button"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginEnd="12dp"
+        android:src="@drawable/notification_image"
+        android:contentDescription="@string/notifications" />
+
+    <!-- 3) Profile -->
+    <ImageView
+        android:id="@+id/profile_button"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:src="@drawable/profile_image"
+        android:contentDescription="@string/profile" />
+</LinearLayout>

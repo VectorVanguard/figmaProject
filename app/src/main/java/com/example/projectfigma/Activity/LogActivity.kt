@@ -4,64 +4,74 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.lifecycleScope
 import com.example.projectfigma.DataBase.DataBase
+import com.example.projectfigma.Entites.Session
 import com.example.projectfigma.Fragments.BottomPanelFragment
 import com.example.projectfigma.R
 import com.example.projectfigma.Util.Password
+import com.example.projectfigma.Util.StatusBar
 import com.example.projectfigma.databinding.ActivityLogBinding
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class LogActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityLogBinding
-    private var isPasswordVisible = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         binding = ActivityLogBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        StatusBar.hideStatusBar(window)
 
-        val dataBase = DataBase.getDb(this)
+        val db = DataBase.getDb(this)
+        val userDao = db.getUserDao()
+        val sessionDao = db.getSessionDao()
 
         supportFragmentManager.beginTransaction()
             .replace(R.id.buttonPanel, BottomPanelFragment())
             .commit()
 
         Password.setIsVisable(binding.passwordEditText)
-        setUpLogIn()
 
-        binding.goToSignUp.setOnClickListener{
-            val intent = Intent(this, RegActivity::class.java)
-            startActivity(intent)
+        binding.goToSignUp.setOnClickListener {
+            startActivity(Intent(this, RegActivity::class.java))
             finish()
         }
+
         binding.forgetPassword.setOnClickListener {
             val email = binding.emailEditText.text.toString().trim()
-
-            Thread {
-                val user = dataBase.getUserDao().getUserByEmail(email)
-
-                runOnUiThread {
-                    if (user != null) {
-                        val intent = Intent(this, ForgetPasswordActivity::class.java)
-                        intent.putExtra("user_email", email)
-                        startActivity(intent)
-                        finish()
-                    } else {
-                        Toast.makeText(this, "Пользователя с такой почтой не существует", Toast.LENGTH_SHORT).show()
-                    }
+            if (email.isBlank()) {
+                Toast.makeText(this, "Введите email", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+            lifecycleScope.launch {
+                val user = withContext(Dispatchers.IO) {
+                    userDao.getUserByEmail(email)
                 }
-            }.start()
+                if (user != null) {
+                    startActivity(
+                        Intent(this@LogActivity, ForgetPasswordActivity::class.java)
+                            .putExtra("user_email", email)
+                    )
+                    finish()
+                } else {
+                    Toast.makeText(
+                        this@LogActivity,
+                        "Пользователя с такой почтой не существует",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+            }
         }
-        binding.exitArrow.setOnClickListener{
-            val intent = Intent(this, MainActivity::class.java)
-            startActivity(intent)
+
+        binding.exitArrow.setOnClickListener {
+            startActivity(Intent(this, MainActivity::class.java))
             finish()
         }
-    }
-
-    private fun setUpLogIn() {
-        val db = DataBase.getDb(this)
 
         binding.buttonLogIn.setOnClickListener {
             val email = binding.emailEditText.text.toString().trim()
@@ -72,23 +82,30 @@ class LogActivity : AppCompatActivity() {
                 return@setOnClickListener
             }
 
-            Thread {
-                val user = db.getUserDao().getUserByEmail(email)
-
-                runOnUiThread {
-                    if (user == null) {
-                        Toast.makeText(this, "Пользователь не найден", Toast.LENGTH_SHORT).show()
-                    } else if (user.password != password) {
-                        Toast.makeText(this, "Неверный пароль", Toast.LENGTH_SHORT).show()
-                    } else {
-                        Toast.makeText(this, "Вход успешен", Toast.LENGTH_SHORT).show()
-
-                        val intent = Intent(this, MainActivity::class.java)
-                        startActivity(intent)
+            lifecycleScope.launch {
+                val user = withContext(Dispatchers.IO) {
+                    userDao.getUserByEmail(email)
+                }
+                when {
+                    user == null -> {
+                        Toast.makeText(this@LogActivity, "Пользователь не найден", Toast.LENGTH_SHORT).show()
+                    }
+                    user.password != password -> {
+                        Toast.makeText(this@LogActivity, "Неверный пароль", Toast.LENGTH_SHORT).show()
+                    }
+                    else -> {
+                        withContext(Dispatchers.IO) {
+                            sessionDao.upsert(Session(id = 0, isLoggedIn = true, userEmail = email))
+                        }
+                        Toast.makeText(this@LogActivity, "Вход успешен", Toast.LENGTH_SHORT).show()
+                        startActivity(
+                            Intent(this@LogActivity, HomeActivity::class.java)
+                                .putExtra("user_email", email)
+                        )
                         finish()
                     }
                 }
-            }.start()
+            }
         }
     }
 }

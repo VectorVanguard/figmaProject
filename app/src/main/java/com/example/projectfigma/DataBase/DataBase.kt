@@ -7,27 +7,38 @@ import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import androidx.sqlite.db.SupportSQLiteDatabase
 import com.example.projectfigma.DAO.BestSellerDao
+import com.example.projectfigma.DAO.SettingsDao
+import com.example.projectfigma.DAO.SessionDao
 import com.example.projectfigma.DAO.UserDao
+import com.example.projectfigma.Entites.AppSettings
 import com.example.projectfigma.Entites.BestSeller
+import com.example.projectfigma.Entites.Session
 import com.example.projectfigma.Entites.User
 import com.example.projectfigma.R
 import com.example.projectfigma.Util.Converters
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.SupervisorJob
+import kotlinx.coroutines.launch
 import java.util.concurrent.Executors
-import kotlin.coroutines.coroutineContext
 
-@Database (entities = [User::class, BestSeller::class], version = 2)
+@Database(
+    entities = [User::class, BestSeller::class, Session::class, AppSettings::class],
+    version = 3
+)
 @TypeConverters(Converters::class)
 abstract class DataBase : RoomDatabase() {
 
-    abstract fun getUserDao() : UserDao
+    abstract fun getUserDao(): UserDao
     abstract fun getBestSellerDao(): BestSellerDao
+    abstract fun getSessionDao(): SessionDao
+    abstract fun getSettingsDao(): SettingsDao
 
     companion object {
         @Volatile
         private var INSTANCE: DataBase? = null
 
-        private val IO_EXECUTOR = Executors.newSingleThreadExecutor()
-        fun ioThread(f: () -> Unit) = IO_EXECUTOR.execute(f)
+        private val applicationScope = CoroutineScope(SupervisorJob() + Dispatchers.IO)
 
         fun getDb(context: Context): DataBase {
             val appContext = context.applicationContext
@@ -35,16 +46,16 @@ abstract class DataBase : RoomDatabase() {
 
             return INSTANCE ?: synchronized(this) {
                 val instance = Room.databaseBuilder(
-                    context.applicationContext,
+                    appContext,
                     DataBase::class.java,
                     "app_database"
                 )
-                    .addCallback(object : RoomDatabase.Callback() {
+                    .addCallback(object : Callback() {
                         override fun onCreate(db: SupportSQLiteDatabase) {
                             super.onCreate(db)
-                            ioThread {
-                                getDb(appContext)
-                                    .getBestSellerDao().insertAll(
+                            applicationScope.launch {
+                                val database = getDb(appContext)
+                                database.getBestSellerDao().insertAll(
                                     listOf(
                                         BestSeller(
                                             imageUri = "android.resource://$packageName/${R.drawable.best_seller_card_1}",
@@ -64,11 +75,16 @@ abstract class DataBase : RoomDatabase() {
                                         )
                                     )
                                 )
+                                database.getSettingsDao()
+                                    .upsert(AppSettings(id = 0, isFirstRun = true))
+                                database.getSessionDao()
+                                    .upsert(Session(id = 0, isLoggedIn = false, userEmail = null))
                             }
                         }
                     })
                     .allowMainThreadQueries()
                     .build()
+
                 INSTANCE = instance
                 instance
             }

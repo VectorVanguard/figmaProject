@@ -11,6 +11,7 @@ import com.example.projectfigma.Entites.User
 import com.example.projectfigma.Fragments.BottomPanelFragment
 import com.example.projectfigma.R
 import com.example.projectfigma.Util.Password
+import com.example.projectfigma.Util.StatusBar
 import com.example.projectfigma.databinding.ActivityRegBinding
 import java.text.ParseException
 import java.text.SimpleDateFormat
@@ -28,6 +29,7 @@ class RegActivity() : AppCompatActivity(){
 
         binding = ActivityRegBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        StatusBar.hideStatusBar(window)
 
         val dateBase = DataBase.getDb(this)
 

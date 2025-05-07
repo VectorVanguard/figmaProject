@@ -8,6 +8,7 @@ import com.example.projectfigma.DataBase.DataBase
 import com.example.projectfigma.Fragments.BottomPanelFragment
 import com.example.projectfigma.R
 import com.example.projectfigma.Util.Password
+import com.example.projectfigma.Util.StatusBar
 import com.example.projectfigma.databinding.ActivityForgetPasswordBinding
 
 class ForgetPasswordActivity : AppCompatActivity() {
@@ -19,6 +20,7 @@ class ForgetPasswordActivity : AppCompatActivity() {
 
         binding = ActivityForgetPasswordBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        StatusBar.hideStatusBar(window)
 
         val dateBase = DataBase.getDb(this)
 

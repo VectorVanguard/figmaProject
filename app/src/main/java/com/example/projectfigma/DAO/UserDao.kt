@@ -22,5 +22,5 @@ interface UserDao {
     fun getUserById(id: Int) : User?
 
     @Query("SELECT * FROM USERS u WHERE u.gmail LIKE :email")
-    fun getUserByEmail(email : String) : User?
+    fun getUserByEmail(email : String) : User
 }
