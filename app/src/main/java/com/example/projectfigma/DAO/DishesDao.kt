@@ -9,7 +9,7 @@ import com.example.projectfigma.Entites.Dishes
 
 @Dao
 interface DishesDao {
-    @Query("SELECT * FROM best_seller")
+    @Query("SELECT * FROM dishes")
     fun getAll(): List<Dishes>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
@@ -18,12 +18,12 @@ interface DishesDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertAll(items: List<Dishes>)
 
-    @Query("SELECT * FROM best_seller")
+    @Query("SELECT * FROM dishes")
     fun getAllV(): LiveData<List<Dishes>>
 
-    @Query("SELECT * FROM best_seller b WHERE b.isBestSeller = 1")
+    @Query("SELECT * FROM dishes b WHERE b.isBestSeller = 1")
     fun getBestSellers(): LiveData<List<Dishes>>
 
-    @Query("SELECT * FROM best_seller b WHERE b.isRecommend = 1")
+    @Query("SELECT * FROM dishes b WHERE b.isRecommend = 1")
     fun getRecommend(): LiveData<List<Dishes>>
 }
