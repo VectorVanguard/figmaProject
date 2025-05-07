@@ -25,7 +25,7 @@ class HomeActivity : AppCompatActivity(),
     private lateinit var userDao: UserDao
     private lateinit var drawer: DrawerLayout
 
-    private lateinit var user: User
+    private var user: User? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -89,8 +89,8 @@ class HomeActivity : AppCompatActivity(),
             .commitNow()
 
         profileMenu.setUserData(
-            name = user.name,
-            email = user.gmail,
+            name = user?.name.takeUnless { it.isNullOrBlank() } ?: "Гость",
+            email = user?.gmail.takeUnless { it.isNullOrBlank() } ?: "Не указано",
             avatarRes = R.drawable.ic_profile_placeholder
         )
 
