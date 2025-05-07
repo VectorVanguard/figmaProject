@@ -66,7 +66,7 @@ class BannerFood : Fragment() {
 
         // 5) А обновление списка (LiveData) можно тоже повесить здесь:
         val dao = DataBase.getDb(requireContext()).getBestSellerDao()
-        dao.getAllV().observe(viewLifecycleOwner) { list ->
+        dao.getBestSellers().observe(viewLifecycleOwner) { list ->
             promoAdapter.updateList(list)
         }
     }

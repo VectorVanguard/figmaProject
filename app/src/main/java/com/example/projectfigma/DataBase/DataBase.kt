@@ -6,12 +6,12 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import androidx.sqlite.db.SupportSQLiteDatabase
-import com.example.projectfigma.DAO.BestSellerDao
+import com.example.projectfigma.DAO.DishesDao
 import com.example.projectfigma.DAO.SettingsDao
 import com.example.projectfigma.DAO.SessionDao
 import com.example.projectfigma.DAO.UserDao
 import com.example.projectfigma.Entites.AppSettings
-import com.example.projectfigma.Entites.BestSeller
+import com.example.projectfigma.Entites.Dishes
 import com.example.projectfigma.Entites.Session
 import com.example.projectfigma.Entites.User
 import com.example.projectfigma.R
@@ -22,14 +22,14 @@ import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.launch
 
 @Database(
-    entities = [User::class, BestSeller::class, Session::class, AppSettings::class],
+    entities = [User::class, Dishes::class, Session::class, AppSettings::class],
     version = 3
 )
 @TypeConverters(Converters::class)
 abstract class DataBase : RoomDatabase() {
 
     abstract fun getUserDao(): UserDao
-    abstract fun getBestSellerDao(): BestSellerDao
+    abstract fun getBestSellerDao(): DishesDao
     abstract fun getSessionDao(): SessionDao
     abstract fun getSettingsDao(): SettingsDao
 
@@ -40,21 +40,33 @@ abstract class DataBase : RoomDatabase() {
         private val applicationScope = CoroutineScope(SupervisorJob() + Dispatchers.IO)
 
         private fun prepopulateBestSellers(packageName: String) = listOf(
-            BestSeller(
+            Dishes(
                 imageUri = "android.resource://$packageName/${R.drawable.best_seller_card_1}",
-                price = 103.0
+                price = 103.0,
+                isBestSeller = true,
+                isRecommend = false,
+                rating = 3.0
             ),
-            BestSeller(
+            Dishes(
                 imageUri = "android.resource://$packageName/${R.drawable.best_seller_card_2}",
-                price = 50.0
+                price = 50.0,
+                isBestSeller = true,
+                isRecommend = false,
+                rating = 4.0
             ),
-            BestSeller(
+            Dishes(
                 imageUri = "android.resource://$packageName/${R.drawable.best_seller_card_3}",
-                price = 12.99
+                price = 12.99,
+                isBestSeller = true,
+                isRecommend = false,
+                rating = 4.0
             ),
-            BestSeller(
+            Dishes(
                 imageUri = "android.resource://$packageName/${R.drawable.best_seller_card_4}",
-                price = 8.20
+                price = 8.20,
+                isBestSeller = true,
+                isRecommend = false,
+                rating = 4.0
             )
         )
 
