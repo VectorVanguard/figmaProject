@@ -24,6 +24,9 @@ interface DishesDao {
     @Query("SELECT * FROM dishes b WHERE b.isBestSeller = 1")
     fun getBestSellers(): LiveData<List<Dishes>>
 
+    @Query("SELECT * FROM dishes b WHERE b.isBestSeller = 1 LIMIT :limit")
+    fun getBestSellersWithLimit(limit : Int): LiveData<List<Dishes>>
+
     @Query("SELECT * FROM dishes b WHERE b.isRecommend = 1")
     fun getRecommend(): LiveData<List<Dishes>>
 }
