@@ -29,7 +29,7 @@ import kotlinx.coroutines.launch
 abstract class DataBase : RoomDatabase() {
 
     abstract fun getUserDao(): UserDao
-    abstract fun getBestSellerDao(): DishesDao
+    abstract fun getDishesDao(): DishesDao
     abstract fun getSessionDao(): SessionDao
     abstract fun getSettingsDao(): SettingsDao
 
@@ -67,6 +67,20 @@ abstract class DataBase : RoomDatabase() {
                 isBestSeller = true,
                 isRecommend = false,
                 rating = 4.0
+            ),
+            Dishes(
+                imageUri = "android.resource://$packageName/${R.drawable.burger}",
+                price = 10.0,
+                isBestSeller = false,
+                isRecommend = true,
+                rating = 5.0
+            ),
+            Dishes(
+                imageUri = "android.resource://$packageName/${R.drawable.roll}",
+                price = 25.0,
+                isBestSeller = false,
+                isRecommend = true,
+                rating = 5.0
             )
         )
 
@@ -87,7 +101,7 @@ abstract class DataBase : RoomDatabase() {
                             applicationScope.launch {
                                 val database = getDb(appContext)
 
-                                val bestSellerDao = database.getBestSellerDao()
+                                val bestSellerDao = database.getDishesDao()
                                 if (bestSellerDao.getAll().isEmpty()) {
                                     bestSellerDao.insertAll(prepopulateBestSellers(pkg))
                                 }
