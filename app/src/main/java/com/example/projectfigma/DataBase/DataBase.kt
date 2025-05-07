@@ -23,7 +23,7 @@ import kotlinx.coroutines.launch
 
 @Database(
     entities = [User::class, Dishes::class, Session::class, AppSettings::class],
-    version = 3
+    version = 4
 )
 @TypeConverters(Converters::class)
 abstract class DataBase : RoomDatabase() {
