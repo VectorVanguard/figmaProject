@@ -25,18 +25,24 @@
                 android:id="@+id/passwordEditText"
                 android:layout_width="166dp"
                 android:layout_height="38dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:autofillHints="fffffffffffffffffff"
                 android:background="@drawable/search_background"
                 android:drawableEnd="@drawable/filter"
-                android:hint="Search"
+                android:hint="@string/search"
                 android:inputType="textPassword"
                 android:padding="10dp"
                 android:paddingEnd="10dp"
                 android:textColor="#3B1B0E"
+
                 android:textColorHint="@color/shadow_black"
                 android:textSize="16sp"
+
                 app:layout_constraintBottom_toTopOf="@+id/textView"
-                app:layout_constraintEnd_toStartOf="@+id/linearLayout"
-                app:layout_constraintHorizontal_bias="0.322"
+                app:layout_constraintEnd_toEndOf="parent"
+
+                app:layout_constraintHorizontal_bias="0.07"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="1.0" />
@@ -127,6 +133,7 @@
             </FrameLayout>
 
             <FrameLayout
+                android:id="@+id/frameLayout"
                 android:layout_width="match_parent"
                 android:layout_height="160dp"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -142,6 +149,24 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     tools:layout="@layout/fragment_best_seller" />
+
+            </FrameLayout>
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/frameLayout">
+
+                <fragment
+                    android:id="@+id/banner_include"
+                    android:name="com.example.projectfigma.Fragments.BannerFood"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    tools:layout="@layout/fragment_banner_food" />
+
             </FrameLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -160,4 +185,5 @@
         android:layout_width="330dp"
         android:layout_height="match_parent"
         android:layout_gravity="end"/>
+
 </androidx.drawerlayout.widget.DrawerLayout>

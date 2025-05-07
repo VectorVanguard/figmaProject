@@ -57,9 +57,11 @@ class HomeActivity : AppCompatActivity(),
                 ).show()
             }.also { this@HomeActivity.adapter = it }
         }
+
         dao.getAllV().observe(this) { list ->
             adapter.updateList(list)
         }
+
         supportFragmentManager
             .beginTransaction()
             .replace(R.id.buttonPanel, BottomPanelFragment())
