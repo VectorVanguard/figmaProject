@@ -20,7 +20,6 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.launch
-import java.util.concurrent.Executors
 
 @Database(
     entities = [User::class, BestSeller::class, Session::class, AppSettings::class],
@@ -40,9 +39,28 @@ abstract class DataBase : RoomDatabase() {
 
         private val applicationScope = CoroutineScope(SupervisorJob() + Dispatchers.IO)
 
+        private fun prepopulateBestSellers(packageName: String) = listOf(
+            BestSeller(
+                imageUri = "android.resource://$packageName/${R.drawable.best_seller_card_1}",
+                price = 103.0
+            ),
+            BestSeller(
+                imageUri = "android.resource://$packageName/${R.drawable.best_seller_card_2}",
+                price = 50.0
+            ),
+            BestSeller(
+                imageUri = "android.resource://$packageName/${R.drawable.best_seller_card_3}",
+                price = 12.99
+            ),
+            BestSeller(
+                imageUri = "android.resource://$packageName/${R.drawable.best_seller_card_4}",
+                price = 8.20
+            )
+        )
+
         fun getDb(context: Context): DataBase {
             val appContext = context.applicationContext
-            val packageName = appContext.packageName
+            val pkg = appContext.packageName
 
             return INSTANCE ?: synchronized(this) {
                 val instance = Room.databaseBuilder(
@@ -50,35 +68,22 @@ abstract class DataBase : RoomDatabase() {
                     DataBase::class.java,
                     "app_database"
                 )
+                    .fallbackToDestructiveMigration()
                     .addCallback(object : Callback() {
-                        override fun onCreate(db: SupportSQLiteDatabase) {
-                            super.onCreate(db)
+                        override fun onOpen(db: SupportSQLiteDatabase) {
+                            super.onOpen(db)
                             applicationScope.launch {
                                 val database = getDb(appContext)
-                                database.getBestSellerDao().insertAll(
-                                    listOf(
-                                        BestSeller(
-                                            imageUri = "android.resource://$packageName/${R.drawable.best_seller_card_1}",
-                                            price = 103.0
-                                        ),
-                                        BestSeller(
-                                            imageUri = "android.resource://$packageName/${R.drawable.best_seller_card_2}",
-                                            price = 50.0
-                                        ),
-                                        BestSeller(
-                                            imageUri = "android.resource://$packageName/${R.drawable.best_seller_card_3}",
-                                            price = 12.99
-                                        ),
-                                        BestSeller(
-                                            imageUri = "android.resource://$packageName/${R.drawable.best_seller_card_4}",
-                                            price = 8.20
-                                        )
-                                    )
-                                )
-                                database.getSettingsDao()
-                                    .upsert(AppSettings(id = 0, isFirstRun = true))
-                                database.getSessionDao()
-                                    .upsert(Session(id = 0, isLoggedIn = false, userEmail = null))
+
+                                val bestSellerDao = database.getBestSellerDao()
+                                if (bestSellerDao.getAll().isEmpty()) {
+                                    bestSellerDao.insertAll(prepopulateBestSellers(pkg))
+                                }
+                                val settingsDao = database.getSettingsDao()
+                                settingsDao.upsert(AppSettings(id = 0, isFirstRun = true))
+
+                                val sessionDao = database.getSessionDao()
+                                sessionDao.upsert(Session(id = 0, isLoggedIn = false, userEmail = null))
                             }
                         }
                     })

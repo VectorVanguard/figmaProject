@@ -18,7 +18,7 @@ interface BestSellerDao {
 
     // Вставить список объектов
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertAll(items: List<BestSeller>)
+    suspend fun insertAll(items: List<BestSeller>)
 
     @Query("SELECT * FROM best_seller")
     fun getAllV(): LiveData<List<BestSeller>>
