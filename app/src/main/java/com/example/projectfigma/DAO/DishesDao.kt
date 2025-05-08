@@ -5,6 +5,7 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
+import androidx.room.Update
 import com.example.projectfigma.Entites.Dishes
 
 @Dao
@@ -29,4 +30,7 @@ interface DishesDao {
 
     @Query("SELECT * FROM dishes b WHERE b.isRecommend = 1")
     fun getRecommend(): LiveData<List<Dishes>>
+
+    @Update
+    suspend fun update(item: Dishes)
 }
