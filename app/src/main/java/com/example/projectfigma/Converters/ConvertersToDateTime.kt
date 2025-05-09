@@ -1,9 +1,10 @@
-package com.example.projectfigma.Util
+package com.example.projectfigma.Converters
 
 import androidx.room.TypeConverter
+import com.example.projectfigma.Enums.DishCategory
 import java.util.Date
 
-class Converters {
+class ConvertersToDateTime {
     @TypeConverter
     fun fromTimestamp(value: Long?): Date? {
         return value?.let { Date(it) }

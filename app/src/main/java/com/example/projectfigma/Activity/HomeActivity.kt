@@ -8,10 +8,10 @@ import androidx.drawerlayout.widget.DrawerLayout
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.projectfigma.Adapters.BestSellerAdapter
-import com.example.projectfigma.DAO.BestSellerDao
+import com.example.projectfigma.DAO.DishesDao
 import com.example.projectfigma.DAO.UserDao
 import com.example.projectfigma.DataBase.DataBase
-import com.example.projectfigma.Entites.BestSeller
+import com.example.projectfigma.Entites.Dishes
 import com.example.projectfigma.Entites.User
 import com.example.projectfigma.Fragments.*
 import com.example.projectfigma.R
@@ -21,11 +21,11 @@ class HomeActivity : AppCompatActivity(),
     HeaderButtonsFragment.Listener {
 
     private lateinit var adapter: BestSellerAdapter
-    private lateinit var dao: BestSellerDao
+    private lateinit var dao: DishesDao
     private lateinit var userDao: UserDao
     private lateinit var drawer: DrawerLayout
 
-    private lateinit var user: User
+    private var user: User? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,7 +35,7 @@ class HomeActivity : AppCompatActivity(),
         drawer = findViewById(R.id.drawer_layout)
 
         val db = DataBase.getDb(this)
-        dao = db.getBestSellerDao()
+        dao = db.getDishesDao()
         userDao = db.getUserDao()
 
         val email = intent.getStringExtra("user_email")
@@ -49,7 +49,7 @@ class HomeActivity : AppCompatActivity(),
                 LinearLayoutManager.HORIZONTAL,
                 false
             )
-            adapter = BestSellerAdapter(emptyList()) { item: BestSeller ->
+            adapter = BestSellerAdapter(emptyList()) { item: Dishes ->
                 Toast.makeText(
                     this@HomeActivity,
                     "Clicked: ${item.price}",
@@ -58,7 +58,7 @@ class HomeActivity : AppCompatActivity(),
             }.also { this@HomeActivity.adapter = it }
         }
 
-        dao.getAllV().observe(this) { list ->
+        dao.getBestSellersWithLimit(4).observe(this) { list ->
             adapter.updateList(list)
         }
 
@@ -89,8 +89,8 @@ class HomeActivity : AppCompatActivity(),
             .commitNow()
 
         profileMenu.setUserData(
-            name = user.name,
-            email = user.gmail,
+            name = user?.name.takeUnless { it.isNullOrBlank() } ?: "Гость",
+            email = user?.gmail.takeUnless { it.isNullOrBlank() } ?: "Не указано",
             avatarRes = R.drawable.ic_profile_placeholder
         )
 

@@ -7,19 +7,19 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.example.projectfigma.Entites.BestSeller
+import com.example.projectfigma.Entites.Dishes
 import com.example.projectfigma.R
 
 class BestSellerAdapter(
-    private var items: List<BestSeller>,
-    private val onClick: (BestSeller) -> Unit
+    private var items: List<Dishes>,
+    private val onClick: (Dishes) -> Unit
 ) : RecyclerView.Adapter<BestSellerAdapter.VH>() {
 
     inner class VH(view: View) : RecyclerView.ViewHolder(view) {
         private val ivFood: ImageView = view.findViewById(R.id.ivFood)
         private val tvPrice: TextView = view.findViewById(R.id.tvPrice)
 
-        fun bind(item: BestSeller) {
+        fun bind(item: Dishes) {
             tvPrice.text = String.format("$%.2f", item.price)
             Glide.with(ivFood.context)
                 .load(item.imageUri)
@@ -40,7 +40,7 @@ class BestSellerAdapter(
         holder.bind(items[position])
     }
 
-    fun updateList(newItems: List<BestSeller>) {
+    fun updateList(newItems: List<Dishes>) {
         items = newItems
         notifyDataSetChanged()
     }

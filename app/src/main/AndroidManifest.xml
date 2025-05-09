@@ -27,6 +27,7 @@
         <activity android:name=".Activity.RegActivity"/>
         <activity android:name=".Activity.HomeActivity"/>
         <activity android:name=".Activity.ForgetPasswordActivity"/>
+        <activity android:name=".Activity.FavoritesActivity"/>
 
         <meta-data
             android:name="preloaded_fonts"
