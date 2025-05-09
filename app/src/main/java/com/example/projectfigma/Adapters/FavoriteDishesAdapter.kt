@@ -7,11 +7,15 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.example.projectfigma.DataBase.DataBase
 import com.example.projectfigma.Entites.Dishes
+import com.example.projectfigma.Entites.User
 import com.example.projectfigma.R
+import kotlin.coroutines.coroutineContext
 
 class FavoriteFoodAdapter(
-    private val items: MutableList<Dishes>
+    private val items: MutableList<Dishes>,
+    private val onFavoriteClick: (dish: Dishes) -> Unit
 ) : RecyclerView.Adapter<FavoriteFoodAdapter.VH>() {
 
     inner class VH(view: View) : RecyclerView.ViewHolder(view) {
@@ -34,16 +38,14 @@ class FavoriteFoodAdapter(
         holder.tvTitle.text = dish.name
         holder.tvDesc.text  = dish.description
 
-        // загрузка изображения блюда
         Glide.with(holder.itemView)
             .load(dish.imageUri)
             .into(holder.imgFood)
 
-        // иконка категории
         holder.imgTag.setImageResource(dish.category.iconRes)
 
-        // иконка «избранное»— всегда заполнена
         holder.imgFavorite.setImageResource(R.drawable.ic_heart_border)
+        holder.imgFavorite.setOnClickListener { onFavoriteClick(dish) }
     }
 
     override fun getItemCount(): Int = items.size
@@ -54,4 +56,5 @@ class FavoriteFoodAdapter(
         items.addAll(newItems)
         notifyDataSetChanged()
     }
+
 }

@@ -18,5 +18,6 @@ data class User(
     @ColumnInfo(name = "mobileNumber")
     var mobileNumber : String,
     @ColumnInfo(name = "dateOfBirth")
-    var dateOfBirth : Date
+    var dateOfBirth : Date,
+    var favoriteDishesId: List<Int>
 )
