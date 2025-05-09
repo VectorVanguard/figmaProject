@@ -6,11 +6,10 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import coil.load
-import com.example.projectfigma.Entites.BestSeller
+import com.example.projectfigma.Entites.Dishes
 import com.example.projectfigma.R
 
-class PromoAdapter(private var items: List<BestSeller>) :
+class PromoAdapter(private var items: List<Dishes>) :
     RecyclerView.Adapter<PromoAdapter.VH>() {
 
     inner class VH(view: View) : RecyclerView.ViewHolder(view) {
@@ -18,7 +17,7 @@ class PromoAdapter(private var items: List<BestSeller>) :
         private val title: TextView = view.findViewById(R.id.title)
         private val discount: TextView = view.findViewById(R.id.discount)
 
-        fun bind(item: BestSeller) {
+        fun bind(item: Dishes) {
             title.text = "Experience our delicious new dish"
             discount.text = "${30}% OFF"
         }
@@ -37,7 +36,7 @@ class PromoAdapter(private var items: List<BestSeller>) :
     override fun getItemCount(): Int = items.size
 
     /** Вызываем из Activity/Fragment при получении новых данных */
-    fun updateList(newItems: List<BestSeller>) {
+    fun updateList(newItems: List<Dishes>) {
         items = newItems
         notifyDataSetChanged()
     }
