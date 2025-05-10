@@ -20,12 +20,6 @@ class FavoritesActivity : AppCompatActivity() {
         setContentView(binding.root)
         StatusBar.hideStatusBar(window)
 
-        val dateBase = DataBase.getDb(this)
-
-        val rv = findViewById<RecyclerView>(R.id.rvFoods).apply {
-            layoutManager = GridLayoutManager(context, 2)
-        }
-
         supportFragmentManager.beginTransaction()
             .replace(R.id.buttonPanel, BottomPanelFragment())
             .commit()

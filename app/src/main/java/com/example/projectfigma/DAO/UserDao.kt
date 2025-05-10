@@ -2,15 +2,20 @@ package com.example.projectfigma.DAO
 
 import androidx.room.Dao
 import androidx.room.Insert
+import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import androidx.room.Update
+import com.example.projectfigma.Entites.Dishes
 import com.example.projectfigma.Entites.User
 
 @Dao
 interface UserDao {
 
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertUser(item: User)
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun insertAll(items: List<User>)
 
     @Update
     fun updateUser(user: User)

@@ -1,12 +1,14 @@
 package com.example.projectfigma.DataBase
 
 import android.content.Context
+import android.text.style.TtsSpan
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import androidx.sqlite.db.SupportSQLiteDatabase
 import com.example.projectfigma.Converters.ConvertToDishesCategory
+import com.example.projectfigma.Converters.ConvertersList
 import com.example.projectfigma.DAO.DishesDao
 import com.example.projectfigma.DAO.SettingsDao
 import com.example.projectfigma.DAO.SessionDao
@@ -22,12 +24,17 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.launch
+import java.util.Date
 
 @Database(
     entities = [User::class, Dishes::class, Session::class, AppSettings::class],
-    version = 5
+    version = 6
 )
-@TypeConverters(ConvertersToDateTime::class, ConvertToDishesCategory::class)
+@TypeConverters(
+    ConvertersToDateTime::class,
+    ConvertToDishesCategory::class,
+    ConvertersList::class
+)
 abstract class DataBase : RoomDatabase() {
 
     abstract fun getUserDao(): UserDao
@@ -40,6 +47,17 @@ abstract class DataBase : RoomDatabase() {
         private var INSTANCE: DataBase? = null
 
         private val applicationScope = CoroutineScope(SupervisorJob() + Dispatchers.IO)
+
+        private fun prepopulateUsers(): List<User> = listOf(
+            User(
+                name = "TestUser",
+                gmail = "test@yandex.ru",
+                password = "1111",
+                mobileNumber = "818412481",
+                dateOfBirth = Date(),
+                favoriteDishesId = listOf(1,2,3)
+            )
+        )
 
         private fun prepopulateBestSellers(packageName: String) = listOf(
             Dishes(
@@ -101,6 +119,16 @@ abstract class DataBase : RoomDatabase() {
                 name = "Роллы",
                 description = "Роллы",
                 category = DishCategory.VEGAN
+            ),
+            Dishes(
+                imageUri = "android.resource://$packageName/${R.drawable.roll}",
+                price = 25.0,
+                isBestSeller = false,
+                isRecommend = true,
+                rating = 5.0,
+                name = "Роллы",
+                description = "Роллы",
+                category = DishCategory.VEGAN
             )
         )
 
@@ -121,10 +149,16 @@ abstract class DataBase : RoomDatabase() {
                             applicationScope.launch {
                                 val database = getDb(appContext)
 
-                                val bestSellerDao = database.getDishesDao()
-                                if (bestSellerDao.getAll().isEmpty()) {
-                                    bestSellerDao.insertAll(prepopulateBestSellers(pkg))
+                                val dishesDao = database.getDishesDao()
+                                if (dishesDao.getAll().isEmpty()) {
+                                    dishesDao.insertAll(prepopulateBestSellers(pkg))
                                 }
+
+                                val userDao = database.getUserDao()
+                                if (userDao.getAllUsers().isEmpty()) {
+                                    userDao.insertAll(prepopulateUsers())
+                                }
+
                                 val settingsDao = database.getSettingsDao()
                                 settingsDao.upsert(AppSettings(id = 0, isFirstRun = true))
 
