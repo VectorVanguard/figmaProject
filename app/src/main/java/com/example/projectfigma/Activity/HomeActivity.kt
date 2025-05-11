@@ -35,7 +35,7 @@ class HomeActivity : AppCompatActivity(),
         drawer = findViewById(R.id.drawer_layout)
 
         val db = DataBase.getDb(this)
-        dao = db.getBestSellerDao()
+        dao = db.getDishesDao()
         userDao = db.getUserDao()
 
         val email = intent.getStringExtra("user_email")
@@ -58,7 +58,7 @@ class HomeActivity : AppCompatActivity(),
             }.also { this@HomeActivity.adapter = it }
         }
 
-        dao.getBestSellers().observe(this) { list ->
+        dao.getBestSellersWithLimit(4).observe(this) { list ->
             adapter.updateList(list)
         }
 
