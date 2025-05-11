@@ -5,7 +5,9 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
+import androidx.room.Update
 import com.example.projectfigma.Entites.Dishes
+import com.example.projectfigma.Enums.DishCategory
 
 @Dao
 interface DishesDao {
@@ -24,6 +26,18 @@ interface DishesDao {
     @Query("SELECT * FROM dishes b WHERE b.isBestSeller = 1")
     fun getBestSellers(): LiveData<List<Dishes>>
 
+    @Query("SELECT * FROM dishes b WHERE b.isBestSeller = 1 LIMIT :limit")
+    fun getBestSellersWithLimit(limit : Int): LiveData<List<Dishes>>
+
     @Query("SELECT * FROM dishes b WHERE b.isRecommend = 1")
     fun getRecommend(): LiveData<List<Dishes>>
+
+    @Query("SELECT * FROM dishes d WHERE d.id = :id")
+    fun getDishById(id : Int) : Dishes
+
+    @Query("SELECT * FROM dishes WHERE id IN (:ids)")
+    fun getDishesByIds(ids: List<Int>): List<Dishes>
+
+    @Update
+    suspend fun update(item: Dishes)
 }
