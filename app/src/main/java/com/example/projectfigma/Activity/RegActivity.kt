@@ -85,7 +85,8 @@ class RegActivity() : AppCompatActivity(){
                                 binding.passwordEditText.text.toString(),
                                 email,
                                 binding.mobileNumberEdit.text.toString(),
-                                selectedDate ?: Date()
+                                selectedDate ?: Date(),
+                                favoriteDishesId = emptyList()
                             )
 
                             Thread {

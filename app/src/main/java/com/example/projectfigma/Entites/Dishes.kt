@@ -14,5 +14,5 @@ data class Dishes(
     val isBestSeller: Boolean,
     val name : String,
     val description : String,
-    val category: String
+    val category: DishCategory
 )

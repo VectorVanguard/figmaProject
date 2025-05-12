@@ -16,7 +16,7 @@ class BottomPanelFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? = inflater.inflate(R.layout.activity_bottom_panel, container, false)
+    ): View? = inflater.inflate(R.layout.fragment_bottom_panel, container, false)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
