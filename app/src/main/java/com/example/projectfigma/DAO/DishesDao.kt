@@ -33,4 +33,21 @@ interface DishesDao {
 
     @Update
     suspend fun update(item: Dishes)
+
+    //Сортировка по популярности (например, по рейтингу)
+    @Query("SELECT * FROM dishes ORDER BY rating DESC")
+    fun getSortedByRating(): LiveData<List<Dishes>>
+
+    //Сортировка по цене (возрастание)
+    @Query("SELECT * FROM dishes ORDER BY price ASC")
+    fun getSortedByPriceAsc(): LiveData<List<Dishes>>
+
+    //Сортировка по цене (убывание)
+    @Query("SELECT * FROM dishes ORDER BY price DESC")
+    fun getSortedByPriceDesc(): LiveData<List<Dishes>>
+
+    @Query("SELECT * FROM dishes WHERE id = :id LIMIT 1")
+    fun getDishById(id: Int): Dishes?
+
+
 }
