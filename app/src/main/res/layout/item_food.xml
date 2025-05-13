@@ -34,10 +34,6 @@
             app:layout_constraintStart_toStartOf="parent"
             android:layout_margin="8dp">
 
-            <ImageView
-                android:layout_width="16dp"
-                android:layout_height="16dp"
-                android:src="@drawable/ic_star_solid" />
             <TextView
                 android:id="@+id/tvRating"
                 android:layout_width="wrap_content"
@@ -46,6 +42,12 @@
                 android:textColor="@android:color/white"
                 android:textSize="12sp"
                 android:layout_marginStart="4dp"/>
+
+            <ImageView
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:src="@drawable/ic_star_solid" />
+
         </LinearLayout>
 
         <!-- Цена -->
