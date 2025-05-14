@@ -120,7 +120,7 @@
             android:layout_height="19dp"
             android:layout_alignEnd="@id/imageCard"
             android:layout_alignBottom="@id/tvDescription"
-            android:layout_marginEnd="-3dp"
+            android:layout_marginEnd="0dp"
             android:layout_marginBottom="3dp"
             android:padding="2dp"
             android:scaleType="centerInside"
