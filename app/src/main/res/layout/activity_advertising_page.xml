@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/background"
+    android:layout_height="match_parent">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout"
+        android:layout_width="match_parent"
+        android:layout_height="140dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/loginHeader"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="TEXT"
+            android:textColor="@android:color/white"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/exitArrow"
+            android:layout_width="7dp"
+            android:layout_height="13dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/exit_arrow"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/loginHeader"
+            app:layout_constraintHorizontal_bias="0.149"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:layout_width="9dp"
+            android:layout_height="41dp"
+            android:layout_marginStart="7dp"
+            android:src="@drawable/ic_heart_unborder"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/loginHeader"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <LinearLayout
+
+            android:id="@+id/llRating"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:background="@drawable/bg_rating_orange"
+            android:orientation="horizontal"
+            android:paddingHorizontal="10dp"
+
+            android:paddingVertical="4dp"
+            android:gravity="center_vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.85">
+
+            <TextView
+                android:id="@+id/tvRating"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="5.0"
+                android:textColor="@android:color/white"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginStart="4dp"
+                android:src="@drawable/ic_star_solid" />
+        </LinearLayout>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout2"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.555"
+        app:layout_constraintStart_toStartOf="parent"
+
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout">
+
+        <FrameLayout
+
+            android:layout_width="match_parent"
+            android:layout_height="240dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+
+            app:layout_constraintTop_toTopOf="parent">
+
+
+            <ImageView
+                android:id="@+id/imgFood"
+                android:layout_width="300dp"
+                android:layout_height="200dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/bg_skibidi_tualet"
+                android:clipToOutline="true"
+                android:scaleType="centerCrop"
+                android:src="@drawable/pizza_sample" />
+
+            <ImageView
+                android:id="@+id/imgDiscount"
+                android:layout_width="71dp"
+                android:layout_height="71dp"
+                android:layout_gravity="top|end"
+                android:layout_marginRight="20dp"
+                android:src="@drawable/ic_discount_30" />
+
+
+        </FrameLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <FrameLayout
+        android:id="@+id/dividingLine1"
+        android:layout_width="match_parent"
+        android:layout_height="15dp"
+        android:paddingTop="10dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout2">
+
+        <fragment
+            android:id="@+id/as1"
+            android:layout_gravity="center"
+            android:name="com.example.projectfigma.Fragments.DividingLine"
+            android:layout_width="350dp"
+            android:layout_height="match_parent"
+            tools:layout="@layout/fragment_dividing_line" />
+
+    </FrameLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/dividingLine1">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="25dp"
+            android:textStyle="bold"
+            android:textColor="@color/organe"
+            android:text="$14.00" />
+
+        <TextView
+            android:layout_marginLeft="5dp"
+            android:id="@+id/customtext1piska"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:textSize="20dp"
+            android:textColor="@color/mainLayoutBackground"
+            android:text="$20.00" />
+
+        <ImageView
+            android:layout_marginLeft="100dp"
+            android:id="@+id/imageView1"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            tools:srcCompat="@drawable/ic_minus" />
+
+        <TextView
+            android:layout_marginLeft="15dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="1"
+            android:textSize="25dp"
+            />
+
+        <ImageView
+            android:layout_marginLeft="15dp"
+            android:id="@+id/imageView2"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            tools:srcCompat="@drawable/ic_plus" />
+
+
+    </LinearLayout>
+
+
+    <FrameLayout
+        android:id="@+id/dividingLine2"
+        android:layout_width="match_parent"
+        android:layout_height="15dp"
+        android:paddingTop="10dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout1">
+
+        <fragment
+            android:id="@+id/as2"
+            android:layout_gravity="center"
+            android:name="com.example.projectfigma.Fragments.DividingLine"
+            android:layout_width="350dp"
+            android:layout_height="match_parent"
+            tools:layout="@layout/fragment_dividing_line" />
+
+    </FrameLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Nazvanie"
+        />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

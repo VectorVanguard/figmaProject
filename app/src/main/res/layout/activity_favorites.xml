@@ -85,7 +85,7 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <include
-        layout="@layout/activity_bottom_panel"
+        layout="@layout/fragment_bottom_panel"
         android:layout_width="wrap_content"
         android:layout_height="55dp"
         app:layout_constraintBottom_toBottomOf="parent"
