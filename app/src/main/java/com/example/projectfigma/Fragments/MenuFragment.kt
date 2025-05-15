@@ -59,7 +59,7 @@ class MenuFragment : Fragment(R.layout.activity_food_detail) {
         lifecycleScope.launch {
             val dishes = withContext(Dispatchers.IO) {
                 when (currentSort) {
-                    SortType.POPULAR -> db.getAllSortedByPopularity()
+                    SortType.POPULAR -> db.getAllSortedByPopularityеба()
                     SortType.PRICE -> db.getAllSortedByPrice()
                     SortType.RATING -> db.getAllSortedByRating()
                 }

@@ -36,7 +36,7 @@ class MenuAdapter(
         h.tvDesc.text = dish.description
         h.tvRating.text = String.format("%.1f", dish.rating)
         h.tvPrice.text = "$%.2f".format(dish.price)
-        h.tvTag.text = "${dish.category.length * 2} × ${pos + 1}" // если category — строка
+        h.tvTag.text = "${dish.category.toString().length * 2} × ${pos + 1}" // если category — строка
 
         Glide.with(h.itemView.context)
             .load(dish.imageUri)
