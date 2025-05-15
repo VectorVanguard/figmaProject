@@ -12,7 +12,7 @@ data class Dishes(
     val rating: Double,
     val isRecommend: Boolean,
     val isBestSeller: Boolean,
-    val name : String,
-    val description : String,
+    val name: String,
+    val description: String,
     val category: DishCategory
 )
