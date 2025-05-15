@@ -40,6 +40,7 @@ dependencies {
     implementation("androidx.constraintlayout:constraintlayout:2.2.1")
 
     implementation("androidx.room:room-ktx:2.7.1")
+    implementation(libs.androidx.activity)
     kapt("androidx.room:room-compiler:2.7.1")
 
     testImplementation("junit:junit:4.13.2")
