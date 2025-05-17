@@ -22,6 +22,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".Activity.RecomendationActivity" />
         <activity android:name=".Activity.WelcomeActivity" />
         <activity android:name=".Activity.LogActivity" />
         <activity android:name=".Activity.RegActivity" />
