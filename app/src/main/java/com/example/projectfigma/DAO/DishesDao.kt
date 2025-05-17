@@ -53,8 +53,12 @@ interface DishesDao {
     @Query("SELECT * FROM dishes ORDER BY price DESC")
     fun getSortedByPriceDesc(): LiveData<List<Dishes>>
 
-    @Query("SELECT * FROM dishes WHERE id = :id LIMIT 1")
-    fun getDishById(id: Int): Dishes?
+    @Query("SELECT * FROM Dishes ORDER BY rating DESC")
+    suspend fun getAllSortedByRating(): List<Dishes>
 
+    @Query("SELECT * FROM Dishes ORDER BY price ASC")
+    suspend fun getAllSortedByPrice(): List<Dishes>
 
+    @Query("SELECT * FROM Dishes ORDER BY ordersCount DESC")
+    suspend fun getAllSortedByPopularity(): List<Dishes>
 }
