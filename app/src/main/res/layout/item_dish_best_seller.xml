@@ -1,131 +1,161 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="8dp"
-    app:cardCornerRadius="12dp"
-    app:cardElevation="4dp">
+    android:orientation="vertical"
+    android:layout_margin="8dp">
 
-    <RelativeLayout
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:padding="8dp">
+    <!-- Карточка с фото и иконками -->
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView"
+        android:layout_width="match_parent"
+        android:layout_height="180dp"
+        app:cardCornerRadius="16dp"
+        app:cardElevation="4dp"
+        app:cardPreventCornerOverlap="false"
+        app:cardUseCompatPadding="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-        <androidx.cardview.widget.CardView
-            android:layout_width="158dp"
-            android:layout_height="141dp"
-            app:cardCornerRadius="20dp"
-            app:cardElevation="0dp"
-            android:id="@+id/imageCard"
-            android:layout_marginTop="0dp"
-            android:layout_gravity="center"
-            android:clipChildren="true"
-            android:clipToPadding="true">
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-        <!-- Основное изображение блюда -->
+            <!-- 1. Фото блюда (для превью в редакторе) -->
             <ImageView
-                android:id="@+id/imgFood"
+                android:id="@+id/dishImage"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:src="@drawable/into_best_seller1"
+                android:clipToOutline="true"
                 android:scaleType="centerCrop" />
-        </androidx.cardview.widget.CardView>
 
-        <!-- Иконка (в левом верхнем углу) -->
-        <ImageView
-            android:id="@+id/imgLeftIcon"
-            android:layout_width="26dp"
-            android:layout_height="26dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginStart="9dp"
-            android:layout_alignTop="@id/imageCard"
-            android:layout_alignStart="@id/imageCard"
-            android:padding="4dp"
-            android:src="@drawable/ic_snacks"
-            android:scaleType="centerInside" />
+            <!-- 2. Иконка категории (верхний левый угол) -->
+            <ImageView
+                android:id="@+id/iconCategory"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_gravity="top|start"
+                android:layout_margin="8dp"
+                android:src="@drawable/ic_drinks" />
 
-        <!-- Иконка (в правом верхнем углу) -->
-        <ImageView
-            android:id="@+id/imgRightIcon"
-            android:layout_width="21dp"
-            android:layout_height="21dp"
-            android:layout_alignTop="@id/imageCard"
-            android:layout_alignEnd="@id/imageCard"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="9dp"
-            android:src="@drawable/ic_heart_border"
-            android:padding="3dp"
-            android:scaleType="centerInside" />
+            <!-- 3. Иконка избранного (верхний правый угол) -->
+            <ImageView
+                android:id="@+id/iconFavorite"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_gravity="top|end"
+                android:layout_margin="8dp"
+                android:src="@drawable/ic_heart_border" />
 
-        <!-- Цена с радиусом слева -->
-        <TextView
-            android:id="@+id/tvPrice"
-            android:layout_width="44dp"
-            android:layout_height="16dp"
-            android:layout_below="@id/imageCard"
-            android:layout_alignEnd="@id/imageCard"
-            android:layout_marginTop="5dp"
-            android:background="@drawable/bg_price_tag"
-            android:gravity="center"
-            android:text=""
-            android:textColor="@android:color/white"
-            android:textSize="10sp" />
+            <!-- 4. Цена (нижний правый угол) -->
+            <TextView
+                android:id="@+id/dishPrice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|end"
+                android:layout_margin="8dp"
+                android:background="@drawable/bg_price_tag"
+                android:padding="4dp"
+                android:text="$15.00"
+                android:textColor="@android:color/white"
+                android:textSize="12sp"
+                android:textStyle="bold" />
 
-        <!-- Название блюда -->
-        <TextView
-            android:id="@+id/tvTitle"
-            android:layout_width="wrap_content"
-            android:layout_height="30dp"
-            android:layout_below="@id/tvPrice"
-            android:layout_alignStart="@id/imageCard"
-            android:layout_marginTop="8dp"
-            android:text="Sunny Bruschetta"
-            android:textStyle="bold"
-            android:textSize="14sp"
-            android:textColor="#000" />
+            <!-- 5. Кнопка «в корзину» (нижний левый угол) -->
 
+        </FrameLayout>
 
-        <!-- Рейтинг -->
+    </androidx.cardview.widget.CardView>
+
+    <TextView
+        android:id="@+id/dishTitle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="4dp"
+
+        android:text="Sunny Bruschetta"
+        android:textColor="@color/organe"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/llRating"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cardView" />
+
+    <LinearLayout
+        android:id="@+id/llRating"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/bg_rating_orange"
+        android:orientation="horizontal"
+        android:paddingStart="3dp"
+        android:paddingEnd="3dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.9"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cardView"
+        app:layout_constraintVertical_bias="0.04000002">
+
         <TextView
             android:id="@+id/tvRating"
-            android:layout_width="31dp"
-            android:layout_height="14dp"
-            android:layout_alignTop="@id/tvTitle"
-            android:layout_alignEnd="@id/imageCard"
-            android:layout_marginTop="2dp"
-            android:background="@drawable/bg_rating"
-            android:gravity="center"
-            android:text=""
-            android:textSize="10sp"
-            android:textColor="@android:color/white" />
-
-        <!-- Описание блюда -->
-        <TextView
-            android:id="@+id/tvDescription"
-            android:layout_width="118dp"
-            android:layout_height="24dp"
-            android:layout_below="@id/tvTitle"
-            android:layout_alignStart="@id/tvTitle"
-            android:layout_marginTop="4dp"
-            android:text="Lorem ipsum dolor sit amet..."
-            android:textSize="12sp"
-            android:textColor="#666" />
-
-        <!-- Корзина (иконка) -->
-        <ImageView
-            android:id="@+id/imgCart"
-            android:layout_width="19dp"
+            android:layout_width="wrap_content"
             android:layout_height="19dp"
-            android:layout_alignEnd="@id/imageCard"
-            android:layout_alignBottom="@id/tvDescription"
-            android:layout_marginEnd="0dp"
-            android:layout_marginBottom="3dp"
-            android:padding="2dp"
-            android:scaleType="centerInside"
-            android:src="@drawable/ic_cart_for_best" />
+            android:layout_gravity="center"
+            android:text="5.0"
+            android:textColor="@android:color/white"
+            android:textSize="12sp" />
+
+        <ImageView
+            android:layout_width="10dp"
+            android:layout_height="10dp"
+            android:layout_gravity="center"
+            android:layout_marginStart="4dp"
+            android:src="@drawable/ic_star_solid" />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/dishDescription"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="4dp"
+        android:ellipsize="end"
+        android:maxLines="2"
+
+        android:paddingTop="0dp"
+        android:text="Lorem ipsum dolor sit amet…"
+        android:textColor="#666"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/iconCart"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/dishTitle"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <ImageView
+        android:id="@+id/iconCart"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_gravity="bottom|start"
+        android:layout_margin="8dp"
+        android:layout_marginTop="20dp"
+        android:src="@drawable/ic_cart_for_best"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.956"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/llRating"
+        app:layout_constraintVertical_bias="1.0" />
 
 
-    </RelativeLayout>
-</androidx.cardview.widget.CardView>
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -4,8 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background"
-    tools:context=".BestSellerActivity">
+    android:background="@drawable/background">
 
     <!-- Заголовок -->
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -22,76 +21,49 @@
             android:textColor="@android:color/white"
             android:textSize="28sp"
             android:textStyle="bold"
-            app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.656" />
 
         <ImageView
             android:id="@+id/exitArrow"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:src="@drawable/exit_arrow"
+            android:layout_width="15dp"
+            android:layout_height="15dp"
             android:layout_marginStart="16dp"
+            android:src="@drawable/exit_arrow"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/loginHeader"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent" />
+            app:layout_constraintVertical_bias="0.632" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <!-- Основной контент -->
-    <ScrollView
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:fillViewport="true"
-        app:layout_constraintTop_toBottomOf="@id/headerLayout"
-        app:layout_constraintBottom_toTopOf="@+id/bottomPanel"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:background="@drawable/white_top_rounded"
-            android:padding="16dp">
-
-            <!-- Подзаголовок -->
-            <TextView
-                android:id="@+id/text"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Discover our most popular dishes!"
-                android:textColor="@android:color/holo_orange_dark"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginBottom="16dp" />
-
-            <!-- Grid из карточек -->
-            <GridLayout
-                android:id="@+id/gridLayout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:columnCount="2"
-                android:rowCount="3"
-                android:alignmentMode="alignMargins"
-                android:useDefaultMargins="true">
-
-                <include layout="@layout/item_dish_best_seller" />
-                <include layout="@layout/item_dish_best_seller" />
-                <include layout="@layout/item_dish_best_seller" />
-                <include layout="@layout/item_dish_best_seller" />
-                <include layout="@layout/item_dish_best_seller" />
-                <include layout="@layout/item_dish_best_seller" />
-            </GridLayout>
-        </LinearLayout>
-    </ScrollView>
-
     <!-- Нижняя панель -->
-    <include
-        android:id="@+id/bottomPanel"
-        layout="@layout/fragment_bottom_panel"
+
+    <FrameLayout
         android:layout_width="match_parent"
+        android:layout_height="654dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/headerLayout">
+
+        <fragment
+            android:id="@+id/food_favorite_fragment"
+            android:name="com.example.projectfigma.Fragments.MainBestSeller"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:layout="@layout/fragment_main_best_seller" />
+
+    </FrameLayout>
+
+    <include
+        layout="@layout/fragment_bottom_panel"
+        android:layout_width="wrap_content"
         android:layout_height="55dp"
-        app:layout_constraintBottom_toBottomOf="parent" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
