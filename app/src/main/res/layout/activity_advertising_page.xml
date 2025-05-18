@@ -255,16 +255,18 @@
     </FrameLayout>
 
     <!-- Description -->
+
     <TextView
         android:id="@+id/zopa"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Nazvanie"
-        android:textSize="16dp"
+        android:textSize="18dp"
         android:textStyle="bold"
-        app:layout_constraintTop_toBottomOf="@+id/dividingLine2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.086"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/dividingLine2" />
 
     <TextView
         android:id="@+id/textView4"
@@ -276,18 +278,20 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
+    <!-- Familiar (10 Slides) -->
     <TextView
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
         android:text="Personal portion"
-        android:textSize="16dp"
+        android:textSize="18dp"
         android:textStyle="bold"
-        app:layout_constraintTop_toBottomOf="@+id/textView4"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.103"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/textView4" />
 
-    <!-- Familiar (10 Slides) -->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayoutFamiliar"
         android:layout_width="wrap_content"
