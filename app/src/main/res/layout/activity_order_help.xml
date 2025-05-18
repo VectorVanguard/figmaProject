@@ -1,16 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <!-- Жёлтая шапка -->
     <RelativeLayout
+        android:id="@+id/relativeLayout"
         android:layout_width="match_parent"
         android:layout_height="200dp"
         android:background="#FDCB58"
-        android:paddingTop="40dp"
         android:paddingStart="16dp"
-        android:paddingEnd="16dp">
+        android:paddingTop="40dp"
+        android:paddingEnd="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <!-- Кнопка "назад" -->
         <ImageView
@@ -19,94 +25,115 @@
             android:layout_height="20dp"
             android:layout_alignParentStart="true"
             android:layout_centerVertical="true"
-            android:src="@drawable/exit_arrow"
-            android:contentDescription="Back" />
+            android:contentDescription="Back"
+            android:src="@drawable/exit_arrow" />
 
         <!-- Заголовок -->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
             android:text="Support"
             android:textColor="#FFFFFF"
             android:textSize="30sp"
-            android:textStyle="bold"
-            android:layout_centerInParent="true" />
+            android:textStyle="bold" />
     </RelativeLayout>
 
     <!-- Основной блок с фоном -->
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:layout_marginTop="160dp"
-        android:background="@drawable/bg_header_rounded"
-        android:padding="16dp" >
+        android:background="@drawable/bg_header_rounded">
 
         <ImageView
             android:id="@+id/center_image"
-            android:layout_width="278dp"
-            android:layout_height="457dp"
+            android:layout_width="279dp"
+            android:layout_height="413dp"
             android:layout_gravity="center"
             android:contentDescription="Centered image"
-            android:src="@drawable/chat" />
-    </LinearLayout>
+            android:src="@drawable/chat"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:layout_editor_absoluteY="-2dp" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="65dp"
-        android:layout_gravity="bottom"
-        android:orientation="horizontal"
-        android:layout_margin="0dp"
-        android:background="#FFE5D4"
-        android:gravity="center_vertical"
-        android:padding="8dp"
-        android:layout_alignParentBottom="true">
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-        <!-- Кнопка вложения -->
-        <ImageView
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_marginEnd="8dp"
-            android:padding="8dp"
-            android:src="@drawable/ic_attachment"
-            android:background="@drawable/bg_circle_white"
-            android:contentDescription="Attach" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <!-- Поле ввода -->
-        <EditText
-            android:layout_width="0dp"
-            android:layout_height="40dp"
-            android:layout_weight="1"
-            android:hint="Write Here..."
-            android:paddingStart="16dp"
-            android:paddingEnd="16dp"
-            android:background="@drawable/bg_edittext_rounded"
-            android:textColor="#000000"
-            android:textColorHint="#888888"
-            android:textSize="14sp" />
+        <LinearLayout
+            android:layout_width="411dp"
+            android:layout_height="150dp"
+            android:layout_alignParentBottom="true"
+            android:layout_gravity="bottom"
+            android:layout_margin="0dp"
+            android:background="#FFE5D4"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:padding="10dp"
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.4"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/center_image"
+            app:layout_constraintVertical_bias="0.589">
 
-        <!-- Микрофон -->
-        <ImageView
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginEnd="8dp"
-            android:padding="8dp"
-            android:src="@drawable/ic_mic"
-            android:background="@drawable/bg_circle_white"
-            android:contentDescription="Mic" />
+            <!-- Кнопка вложения -->
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginEnd="8dp"
+                android:background="@drawable/bg_circle_white"
+                android:contentDescription="Attach"
+                android:padding="8dp"
+                android:src="@drawable/ic_attachment" />
 
-        <!-- Отправка -->
-        <ImageView
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:padding="8dp"
-            android:src="@drawable/ic_send"
-            android:background="@drawable/bg_circle_white"
-            android:contentDescription="Send" />
-    </LinearLayout>
+            <!-- Поле ввода -->
+            <EditText
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:layout_weight="1"
+                android:background="@drawable/bg_edittext_rounded"
+                android:hint="Write Here..."
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
+                android:textColor="#000000"
+                android:textColorHint="#888888"
+                android:textSize="14sp" />
+
+            <!-- Микрофон -->
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:background="@drawable/bg_circle_white"
+                android:contentDescription="Mic"
+                android:padding="8dp"
+                android:src="@drawable/ic_mic" />
+
+            <!-- Отправка -->
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:background="@drawable/bg_circle_white"
+                android:contentDescription="Send"
+                android:padding="8dp"
+                android:src="@drawable/ic_send" />
+        </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-    <!-- Фото по центру -->
+    <include
+        layout="@layout/fragment_bottom_panel"
+        android:layout_width="wrap_content"
+        android:layout_height="55dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
-</FrameLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -8,9 +9,12 @@
         android:layout_width="match_parent"
         android:layout_height="200dp"
         android:background="#FDCB58"
-        android:paddingTop="40dp"
         android:paddingStart="16dp"
-        android:paddingEnd="16dp">
+        android:paddingTop="40dp"
+        android:paddingEnd="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <!-- Кнопка "назад" слева -->
         <ImageView
@@ -19,18 +23,18 @@
             android:layout_height="20dp"
             android:layout_alignParentStart="true"
             android:layout_centerVertical="true"
-            android:src="@drawable/exit_arrow"
-            android:contentDescription="Back" />
+            android:contentDescription="Back"
+            android:src="@drawable/exit_arrow" />
 
         <!-- Текст "Help" по центру -->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
             android:text="Help"
             android:textColor="#FFFFFF"
             android:textSize="30sp"
-            android:textStyle="bold"
-            android:layout_centerInParent="true" />
+            android:textStyle="bold" />
     </RelativeLayout>
 
 
@@ -171,4 +175,11 @@
         </LinearLayout>
 
     </LinearLayout>
-</FrameLayout>
+    <include
+        layout="@layout/fragment_bottom_panel"
+        android:layout_width="wrap_content"
+        android:layout_height="55dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
