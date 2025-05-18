@@ -39,7 +39,7 @@ class MainRecommendAdapter(
         holder.imgCategory.setImageResource(dish.category.iconRes)
         holder.tvTitle.text = dish.name
         holder.tvDesc.text = dish.description
-        holder.tvPrice.text = dish.price.toString()
+        holder.tvPrice.text = "$" + dish.price.toString()
         holder.tvRating.text = dish.rating.toString()
     }
 
