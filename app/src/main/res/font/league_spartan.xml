@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<font-family xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- Thin 100 -->
+    <font
+        android:fontStyle="normal"
+        android:fontWeight="100"
+        android:font="@font/league_spartan_orig" />
+
+    <!-- ExtraLight 200 -->
+    <font
+        android:fontStyle="normal"
+        android:fontWeight="200"
+        android:font="@font/league_spartan_extra_light" />
+
+    <!-- Light 300 -->
+    <font
+        android:fontStyle="normal"
+        android:fontWeight="300"
+        android:font="@font/league_spartan_light" />
+
+    <!-- Regular 400 -->
+    <font
+        android:fontStyle="normal"
+        android:fontWeight="400"
+        android:font="@font/league_spartan_regular" />
+
+    <!-- Medium 500 -->
+    <font
+        android:fontStyle="normal"
+        android:fontWeight="500"
+        android:font="@font/league_spartan_medium" />
+
+    <!-- SemiBold 600 -->
+    <font
+        android:fontStyle="normal"
+        android:fontWeight="600"
+        android:font="@font/league_spartan_semi_bold" />
+
+    <!-- Bold 700 -->
+    <font
+        android:fontStyle="normal"
+        android:fontWeight="700"
+        android:font="@font/league_spartan_bold" />
+
+    <!-- ExtraBold 800 -->
+    <font
+        android:fontStyle="normal"
+        android:fontWeight="800"
+        android:font="@font/league_spartan_extra_bold" />
+
+    <!-- Black 900 -->
+    <font
+        android:fontStyle="normal"
+        android:fontWeight="900"
+        android:font="@font/league_spartan_black" />
+
+</font-family>

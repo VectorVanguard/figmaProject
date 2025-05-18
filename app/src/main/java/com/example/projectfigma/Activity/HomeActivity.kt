@@ -1,6 +1,8 @@
 package com.example.projectfigma.Activity
 
+import android.content.Intent
 import android.os.Bundle
+import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -70,6 +72,13 @@ class HomeActivity : AppCompatActivity(),
             .beginTransaction()
             .replace(R.id.buttonPanel, BottomPanelFragment())
             .commit()
+
+        val filterButton = findViewById<ImageView>(R.id.filterIcon)
+        filterButton.setOnClickListener {
+            val intent = Intent(this, FiltersActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
     }
 
     override fun onCartClicked() {

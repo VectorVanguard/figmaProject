@@ -19,9 +19,9 @@
 
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- Для поддержки старших API -->
-        <item name="android:fontFamily">@font/league_spartan_thin</item>
+        <item name="android:fontFamily">@font/league_spartan</item>
         <!-- Для AppCompat -->
-        <item name="fontFamily">@font/league_spartan_thin</item>
+        <item name="fontFamily">@font/league_spartan</item>
 
         <!-- Переопределяем базовые стили виджетов -->
         <item name="android:textViewStyle">@style/CustomTextView</item>
@@ -31,20 +31,20 @@
 
     <!-- Общий стиль для TextView -->
     <style name="CustomTextView" parent="@style/Widget.AppCompat.TextView">
-        <item name="android:fontFamily">@font/league_spartan_thin</item>
-        <item name="fontFamily">@font/league_spartan_thin</item>
+        <item name="android:fontFamily">@font/league_spartan</item>
+        <item name="fontFamily">@font/league_spartan</item>
     </style>
 
     <!-- Общий стиль для Button -->
     <style name="CustomButton" parent="@style/Widget.AppCompat.Button">
-        <item name="android:fontFamily">@font/league_spartan_thin</item>
-        <item name="fontFamily">@font/league_spartan_thin</item>
+        <item name="android:fontFamily">@font/league_spartan</item>
+        <item name="fontFamily">@font/league_spartan</item>
     </style>
 
     <!-- Общий стиль для EditText -->
     <style name="CustomEditText" parent="@style/Widget.AppCompat.EditText">
-        <item name="android:fontFamily">@font/league_spartan_thin</item>
-        <item name="fontFamily">@font/league_spartan_thin</item>
+        <item name="android:fontFamily">@font/league_spartan</item>
+        <item name="fontFamily">@font/league_spartan</item>
     </style>
 
 </resources>
