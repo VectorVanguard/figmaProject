@@ -28,7 +28,7 @@ import java.util.Date
 
 @Database(
     entities = [User::class, Dishes::class, Session::class, AppSettings::class],
-    version = 6
+    version = 9
 )
 @TypeConverters(
     ConvertersToDateTime::class,
@@ -129,7 +129,67 @@ abstract class DataBase : RoomDatabase() {
                 name = "Роллы",
                 description = "Роллы",
                 category = DishCategory.VEGAN
-            )
+            ),
+            Dishes(
+                imageUri = "android.resource://$packageName/${R.drawable.into_best_seller1}",
+                price = 15.0,
+                isBestSeller = true,
+                isRecommend = false,
+                rating = 5.0,
+                name = "Солнечная брускетта",
+                description = "Солнечная брускетта",
+                category = DishCategory.SNACKS
+            ),
+            Dishes(
+                imageUri = "android.resource://$packageName/${R.drawable.into_best_seller2}",
+                price = 12.0,
+                isBestSeller = true,
+                isRecommend = false,
+                rating = 4.5,
+                name = "Изысканные шашлыки на гриле",
+                description = "Изысканные шашлыки на гриле",
+                category = DishCategory.SNACKS
+            ),
+            Dishes(
+                imageUri = "android.resource://$packageName/${R.drawable.into_best_seller3}",
+                price = 15.0,
+                isBestSeller = true,
+                isRecommend = false,
+                rating = 4.0,
+                name = "Тако с барбекю",
+                description = "Тако с барбекю",
+                category = DishCategory.MEAL
+            ),
+            Dishes(
+                imageUri = "android.resource://$packageName/${R.drawable.into_best_seller4}",
+                price = 12.0,
+                isBestSeller = true,
+                isRecommend = false,
+                rating = 3.5,
+                name = "Лазанья из брокколи",
+                description = "Лазанья из брокколи",
+                category = DishCategory.VEGAN
+            ),
+            Dishes(
+                imageUri = "android.resource://$packageName/${R.drawable.into_best_seller5}",
+                price = 15.0,
+                isBestSeller = true,
+                isRecommend = false,
+                rating = 3.0,
+                name = "Снежный кофе",
+                description = "Снежный кофе",
+                category = DishCategory.DRINKS
+            ),
+            Dishes(
+                imageUri = "android.resource://$packageName/${R.drawable.into_best_seller6}",
+                price = 12.0,
+                isBestSeller = true,
+                isRecommend = false,
+                rating = 4.0,
+                name = "Клубничный чизкейк",
+                description = "Клубничный чизкейк",
+                category = DishCategory.DESERT
+            ),
         )
 
         fun getDb(context: Context): DataBase {

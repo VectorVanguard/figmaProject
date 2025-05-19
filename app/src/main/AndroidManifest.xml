@@ -14,7 +14,7 @@
         android:theme="@style/Theme.Project"
         tools:targetApi="31">
         <activity
-            android:name=".Activity.AdvertisingPage"
+            android:name=".Activity.FoodDetailActivity"
             android:exported="false" />
         <activity
             android:name=".Activity.MainActivity"
@@ -25,12 +25,15 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".Activity.RecomendationActivity" />
         <activity android:name=".Activity.WelcomeActivity" />
         <activity android:name=".Activity.LogActivity" />
         <activity android:name=".Activity.RegActivity" />
         <activity android:name=".Activity.HomeActivity" />
         <activity android:name=".Activity.ForgetPasswordActivity" />
         <activity android:name=".Activity.FavoritesActivity" />
+        <activity android:name=".Activity.BestSellerActivity" />
+        <activity android:name=".Activity.AdverstsingPageActivity" />
 
         <meta-data
             android:name="preloaded_fonts"

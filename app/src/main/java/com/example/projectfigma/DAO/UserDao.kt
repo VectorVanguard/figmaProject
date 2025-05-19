@@ -28,4 +28,14 @@ interface UserDao {
 
     @Query("SELECT * FROM USERS u WHERE u.gmail LIKE :email")
     fun getUserByEmail(email : String) : User
+
+    @Query("""
+        UPDATE users 
+        SET favoriteDishesId = :favoriteDishes 
+        WHERE id = :userId
+    """)
+    suspend fun updateFavoriteDishes(
+        userId: Int,
+        favoriteDishes: List<Int>
+    )
 }
