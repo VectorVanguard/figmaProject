@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.projectfigma.Adapters.BestSellerAdapter
 import com.example.projectfigma.DAO.DishesDao
+import com.example.projectfigma.DAO.SessionDao
 import com.example.projectfigma.DAO.UserDao
 import com.example.projectfigma.DataBase.DataBase
 import com.example.projectfigma.Entites.Dishes
@@ -26,9 +27,9 @@ class HomeActivity : AppCompatActivity(),
     private lateinit var adapter: BestSellerAdapter
     private lateinit var dao: DishesDao
     private lateinit var userDao: UserDao
+    private lateinit var sessionDao: SessionDao
     private lateinit var drawer: DrawerLayout
-
-    private var user: User? = null
+    private lateinit var user: User
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,11 +39,8 @@ class HomeActivity : AppCompatActivity(),
         val db = DataBase.getDb(this)
         dao = db.getDishesDao()
         userDao = db.getUserDao()
-
-        val email = intent.getStringExtra("user_email")
-        if (!email.isNullOrBlank()) {
-            user = userDao.getUserByEmail(email)
-        }
+        sessionDao = db.getSessionDao()
+        user = (sessionDao.getSession()?.user ?: null)!!
 
         drawer = findViewById<DrawerLayout>(R.id.drawer_layout)
 

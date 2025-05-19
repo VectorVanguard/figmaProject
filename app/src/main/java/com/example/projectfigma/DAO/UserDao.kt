@@ -34,7 +34,7 @@ interface UserDao {
         SET favoriteDishesId = :favoriteDishes 
         WHERE id = :userId
     """)
-    suspend fun updateFavoriteDishes(
+    fun updateFavoriteDishes(
         userId: Int,
         favoriteDishes: List<Int>
     )
