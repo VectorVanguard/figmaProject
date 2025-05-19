@@ -19,6 +19,7 @@ import com.example.projectfigma.Entites.User
 import com.example.projectfigma.Fragments.*
 import com.example.projectfigma.R
 import com.example.projectfigma.Util.StatusBar
+import com.example.projectfigma.Util.SwitchCard
 
 class HomeActivity : AppCompatActivity(),
     HeaderButtonsFragment.Listener {
@@ -35,8 +36,6 @@ class HomeActivity : AppCompatActivity(),
         setContentView(R.layout.activity_home)
         StatusBar.hideStatusBar(window)
 
-        drawer = findViewById(R.id.drawer_layout)
-
         val db = DataBase.getDb(this)
         dao = db.getDishesDao()
         userDao = db.getUserDao()
@@ -46,23 +45,23 @@ class HomeActivity : AppCompatActivity(),
             user = userDao.getUserByEmail(email)
         }
 
+        drawer = findViewById<DrawerLayout>(R.id.drawer_layout)
+
+        adapter = BestSellerAdapter(emptyList()) { item ->
+            SwitchCard.switchDish(
+                item,
+                this,
+                FoodDetailActivity::class.java
+            )
+        }
         val rv = findViewById<RecyclerView>(R.id.rvBestSellers).apply {
             layoutManager = LinearLayoutManager(
                 this@HomeActivity,
                 LinearLayoutManager.HORIZONTAL,
                 false
             )
-            adapter = BestSellerAdapter(emptyList()) { item: Dishes ->
-                Toast.makeText(
-                    this@HomeActivity,
-                    "Clicked: ${item.price}",
-                    Toast.LENGTH_SHORT
-                ).show()
-            }.also { this@HomeActivity.adapter = it }
+            adapter = this@HomeActivity.adapter
         }
-
-
-
 
         dao.getBestSellersWithLimit(4).observe(this) { list ->
             adapter.updateList(list)
