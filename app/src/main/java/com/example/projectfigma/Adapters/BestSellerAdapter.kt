@@ -12,7 +12,7 @@ import com.example.projectfigma.R
 
 class BestSellerAdapter(
     private var items: List<Dishes>,
-    private val onClick: (Dishes) -> Unit
+    private val switchToSelfPage: (Dishes) -> Unit
 ) : RecyclerView.Adapter<BestSellerAdapter.VH>() {
 
     inner class VH(view: View) : RecyclerView.ViewHolder(view) {
@@ -26,7 +26,7 @@ class BestSellerAdapter(
                 .centerCrop()
                 .into(ivFood)
 
-            itemView.setOnClickListener { onClick(item) }
+            itemView.setOnClickListener { switchToSelfPage(item) }
         }
     }
 

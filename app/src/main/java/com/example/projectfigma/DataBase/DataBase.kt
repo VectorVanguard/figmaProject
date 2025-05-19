@@ -28,7 +28,7 @@ import java.util.Date
 
 @Database(
     entities = [User::class, Dishes::class, Session::class, AppSettings::class],
-    version = 7
+    version = 9
 )
 @TypeConverters(
     ConvertersToDateTime::class,
