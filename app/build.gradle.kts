@@ -48,6 +48,9 @@ dependencies {
     androidTestImplementation("androidx.test.ext:junit:1.2.1")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.6.1")
 
+    // JSON
+    implementation ("com.google.code.gson:gson:2.10.1")
+
     // RecyclerView
     implementation("androidx.recyclerview:recyclerview:1.2.1")
     // CardView для скруглённых углов карточек

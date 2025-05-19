@@ -31,10 +31,6 @@ class LogActivity : AppCompatActivity() {
         val userDao = db.getUserDao()
         val sessionDao = db.getSessionDao()
 
-        supportFragmentManager.beginTransaction()
-            .replace(R.id.buttonPanel, BottomPanelFragment())
-            .commit()
-
         Password.setIsVisable(binding.passwordEditText)
 
         binding.goToSignUp.setOnClickListener {
@@ -95,7 +91,7 @@ class LogActivity : AppCompatActivity() {
                     }
                     else -> {
                         withContext(Dispatchers.IO) {
-                            sessionDao.upsert(Session(id = 0, isLoggedIn = true, userEmail = email))
+                            sessionDao.upsert(Session(id = 0, isLoggedIn = true, userEmail = email, user = user))
                         }
                         Toast.makeText(this@LogActivity, "Вход успешен", Toast.LENGTH_SHORT).show()
                         startActivity(
