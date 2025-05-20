@@ -43,7 +43,6 @@ abstract class DataBase : RoomDatabase() {
     abstract fun getDishesDao(): DishesDao
     abstract fun getSessionDao(): SessionDao
     abstract fun getSettingsDao(): SettingsDao
-    abstract fun getBasketDao(): BasketDAO
 
     companion object {
         @Volatile
