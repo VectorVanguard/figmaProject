@@ -15,7 +15,8 @@ import kotlin.coroutines.coroutineContext
 
 class FavoriteFoodAdapter(
     private val items: MutableList<Dishes>,
-    private val onFavoriteClick: (dish: Dishes) -> Unit
+    private val onFavoriteClick: (dish: Dishes) -> Unit,
+    private val switchToSelfPage: (Dishes) -> Unit
 ) : RecyclerView.Adapter<FavoriteFoodAdapter.VH>() {
 
     inner class VH(view: View) : RecyclerView.ViewHolder(view) {
@@ -46,6 +47,8 @@ class FavoriteFoodAdapter(
 
         holder.imgFavorite.setImageResource(R.drawable.ic_heart_border)
         holder.imgFavorite.setOnClickListener { onFavoriteClick(dish) }
+
+        holder.itemView.setOnClickListener { switchToSelfPage(dish) }
     }
 
     override fun getItemCount(): Int = items.size

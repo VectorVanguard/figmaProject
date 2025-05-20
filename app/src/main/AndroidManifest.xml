@@ -14,6 +14,9 @@
         android:theme="@style/Theme.Project"
         tools:targetApi="31">
         <activity
+            android:name=".Activity.FoodDetailActivity"
+            android:exported="false" />
+        <activity
             android:name=".Activity.MainActivity"
             android:exported="true">
             <intent-filter>
@@ -31,6 +34,9 @@
         <activity android:name=".Activity.FavoritesActivity" />
         <activity android:name=".Activity.BestSellerActivity" />
         <activity android:name=".Activity.AdverstsingPageActivity" />
+        <activity android:name=".Activity.OrderHelpActivity" />
+        <activity android:name=".Activity.HelpCenterActivity" />
+        <activity android:name=".Activity.HelpActivity" />
 
         <meta-data
             android:name="preloaded_fonts"

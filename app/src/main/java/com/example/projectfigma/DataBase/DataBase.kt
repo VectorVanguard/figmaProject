@@ -20,8 +20,7 @@ import com.example.projectfigma.Entites.User
 import com.example.projectfigma.Enums.DishCategory
 import com.example.projectfigma.R
 import com.example.projectfigma.Converters.ConvertersToDateTime
-import com.example.projectfigma.DAO.BasketDAO
-import com.example.projectfigma.Entites.Basket
+import com.example.projectfigma.Converters.SessionConverters
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
@@ -29,13 +28,14 @@ import kotlinx.coroutines.launch
 import java.util.Date
 
 @Database(
-    entities = [User::class, Dishes::class, Session::class, AppSettings::class, Basket::class],
-    version = 7
+    entities = [User::class, Dishes::class, Session::class, AppSettings::class],
+    version = 10
 )
 @TypeConverters(
     ConvertersToDateTime::class,
     ConvertToDishesCategory::class,
-    ConvertersList::class
+    ConvertersList::class,
+    SessionConverters::class
 )
 abstract class DataBase : RoomDatabase() {
 
@@ -226,7 +226,7 @@ abstract class DataBase : RoomDatabase() {
                                 settingsDao.upsert(AppSettings(id = 0, isFirstRun = true))
 
                                 val sessionDao = database.getSessionDao()
-                                sessionDao.upsert(Session(id = 0, isLoggedIn = false, userEmail = null))
+                                sessionDao.upsert(Session(id = 0, isLoggedIn = false, userEmail = null, user = null))
                             }
                         }
                     })
