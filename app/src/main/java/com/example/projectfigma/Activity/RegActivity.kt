@@ -36,10 +36,6 @@ class RegActivity() : AppCompatActivity(){
         setupDatePicker()
         Reg(binding, dateBase)
 
-        supportFragmentManager.beginTransaction()
-            .replace(R.id.buttonPanel, BottomPanelFragment())
-            .commit()
-
          passwordEditText = binding.passwordEditText
          Password.setIsVisable(passwordEditText)
 

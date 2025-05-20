@@ -8,6 +8,7 @@ import android.widget.ImageView
 import androidx.fragment.app.Fragment
 import com.example.projectfigma.Activity.FavoritesActivity
 import com.example.projectfigma.Activity.HelpActivity
+import com.example.projectfigma.Activity.FoodDetailActivity
 import com.example.projectfigma.Activity.HomeActivity
 import com.example.projectfigma.R
 
@@ -31,9 +32,8 @@ class BottomPanelFragment : Fragment() {
         navHome    .setOnClickListener { openActivity(HomeActivity::class.java) }
         navSupport .setOnClickListener { openActivity(HelpActivity::class.java) }
         navFav     .setOnClickListener { openActivity(FavoritesActivity::class.java) }
-
+        navFood    .setOnClickListener { openActivity(FoodDetailActivity::class.java) }
         /**
-        navFood    .setOnClickListener { openActivity(FoodActivity::class.java) }
         navList    .setOnClickListener { openActivity(OrdersActivity::class.java) }
          **/
     }

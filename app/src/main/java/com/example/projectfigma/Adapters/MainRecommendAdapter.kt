@@ -12,7 +12,8 @@ import com.example.projectfigma.Entites.Dishes
 import com.example.projectfigma.R
 
 class MainRecommendAdapter(
-    private var dishes: List<Dishes>
+    private var dishes: List<Dishes>,
+    private val switchToSelfPage: (Dishes) -> Unit
 ) : RecyclerView.Adapter<MainRecommendAdapter.ViewHolder>() {
 
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
@@ -41,6 +42,8 @@ class MainRecommendAdapter(
         holder.tvDesc.text = dish.description
         holder.tvPrice.text = "$" + dish.price.toString()
         holder.tvRating.text = dish.rating.toString()
+
+        holder.itemView.setOnClickListener { switchToSelfPage(dish) }
     }
 
     override fun getItemCount(): Int = dishes.size

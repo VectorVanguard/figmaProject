@@ -11,10 +11,12 @@ import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.projectfigma.Activity.BestSellerActivity
+import com.example.projectfigma.Activity.FoodDetailActivity
 import com.example.projectfigma.Activity.RecomendationActivity
 import com.example.projectfigma.Adapters.RecommendAdapter
 import com.example.projectfigma.DataBase.DataBase
 import com.example.projectfigma.R
+import com.example.projectfigma.Util.SwitchCard
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -45,7 +47,15 @@ class Recommend : Fragment(R.layout.fragment_recommend) {
                 db.getDishesDao()
                     .getRecommend()
                     .observe(viewLifecycleOwner) { list ->
-                        val adapter = RecommendAdapter(list)
+                        val adapter = RecommendAdapter(list,
+                            switchToSelfPage = { item ->
+                                SwitchCard.switchDish(
+                                    item,
+                                    requireContext(),
+                                    FoodDetailActivity::class.java
+                                )
+                            }
+                        )
                         rv.adapter = adapter
                     }
             }
