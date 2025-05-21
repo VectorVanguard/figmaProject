@@ -58,7 +58,11 @@ class CartAdapter(
 
         holder.tvName.text     = dish.name
         holder.tvPrice.text    = "$${"%.2f".format(dish.price)}"
-        holder.tvDateTime.text = product.creationTime.format(date)
+
+        val okak = product.creationTime.format(date)
+        val kako = product.creationTime.format(time)
+
+        holder.tvDateTime.text = "$okak\n   $kako"
         holder.tvQuantity.text = product.quantity.toString()
 
         holder.btnMinus.setOnClickListener {

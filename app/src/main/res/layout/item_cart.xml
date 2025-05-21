@@ -3,21 +3,24 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginVertical="8dp"
-    >
+    android:foreground="?attr/selectableItemBackground">
 
     <LinearLayout
-        android:background="@color/organe"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="12dp"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:background="@color/organe"
+        android:padding="12dp">
 
+        <!-- 1. Картинка блюда -->
         <ImageView
             android:id="@+id/ivDish"
             android:layout_width="64dp"
             android:layout_height="64dp"
+            android:scaleType="centerCrop"
             android:src="@drawable/burger" />
 
+        <!-- 2. Блок с именем и ценой (без даты!) -->
         <LinearLayout
             android:layout_width="0dp"
             android:layout_weight="1"
@@ -29,57 +32,66 @@
                 android:id="@+id/tvName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/white"
                 android:text="Dish name"
-                android:textStyle="bold"
-                android:textSize="16sp" />
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/tvPrice"
                 android:layout_width="wrap_content"
-                android:textColor="@color/white"
-
                 android:layout_height="wrap_content"
                 android:text="$12.00"
+                android:textColor="@color/white"
                 android:layout_marginTop="4dp" />
+        </LinearLayout>
 
+        <!-- 3. Контейнер справа: сначала дата, потом счётчик -->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:gravity="center">
+
+            <!-- Дата сверху -->
             <TextView
                 android:id="@+id/tvDateTime"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="29/11/24 \n   15:00"
-                android:layout_marginTop="2dp"
+                android:text="29/11/24"
                 android:textColor="@color/white"
-                android:textSize="12sp" />
-        </LinearLayout>
+                android:textSize="12sp"
+                android:layout_marginBottom="8dp"/>
 
-        <LinearLayout
-            android:layout_marginStart="10dp"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:orientation="horizontal">
+            <!-- Счётчик ниже -->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center">
 
-            <ImageView
-                android:id="@+id/btnMinus"
-                android:layout_width="20dp"
-                android:layout_height="match_parent"
-                android:src="@drawable/ic_white_minus"/>
+                <ImageView
+                    android:id="@+id/btnMinus"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@drawable/ic_white_minus" />
 
-            <TextView
-                android:id="@+id/tvQuantity"
-                android:layout_width="20dp"
-                android:layout_height="match_parent"
-                android:gravity="center"
-                android:textColor="@color/white"
-                android:textSize="20dp"
-                android:layout_weight="800"
-                android:text="1"/>
+                <TextView
+                    android:id="@+id/tvQuantity"
+                    android:layout_width="32dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="1"
+                    android:textColor="@color/white"
+                    android:textSize="16sp"
+                    android:layout_marginHorizontal="4dp"/>
 
-            <ImageView
-                android:id="@+id/btnPlus"
-                android:layout_width="20dp"
-                android:layout_height="match_parent"
-                android:src="@drawable/ic_white_plus"/>
+                <ImageView
+                    android:id="@+id/btnPlus"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@drawable/ic_white_plus" />
+            </LinearLayout>
         </LinearLayout>
     </LinearLayout>
 </androidx.cardview.widget.CardView>
