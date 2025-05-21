@@ -22,15 +22,16 @@
             android:layout_height="15dp"
             android:layout_marginStart="16dp"
             android:src="@drawable/exit_arrow"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"/>
+            app:layout_constraintVertical_bias="0.608" />
 
         <TextView
             android:id="@+id/loginHeader"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Confirm Order"
+            android:text="Payment"
             android:textColor="@android:color/white"
             android:textSize="28sp"
             android:textStyle="bold"
@@ -38,7 +39,8 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.422"
             app:layout_constraintStart_toEndOf="@id/exitArrow"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.63" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <!-- Контейнер для содержимого: растягивается от headerLayout до bottomPanel -->
@@ -82,7 +84,7 @@
 
         <!-- 4) Кнопка Place Order -->
         <ImageView
-            android:id="@+id/placeOrder"
+            android:id="@+id/payNow"
             android:layout_width="160dp"
             android:layout_height="38dp"
             android:src="@drawable/ic_pay_now"
