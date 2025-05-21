@@ -8,6 +8,7 @@ import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import androidx.sqlite.db.SupportSQLiteDatabase
 import com.example.projectfigma.Converters.ConvertToDishesCategory
+import com.example.projectfigma.Converters.ConvertersDishes
 import com.example.projectfigma.Converters.ConvertersList
 import com.example.projectfigma.DAO.DishesDao
 import com.example.projectfigma.DAO.SettingsDao
@@ -21,6 +22,10 @@ import com.example.projectfigma.Enums.DishCategory
 import com.example.projectfigma.R
 import com.example.projectfigma.Converters.ConvertersToDateTime
 import com.example.projectfigma.Converters.SessionConverters
+import com.example.projectfigma.DAO.BasketDAO
+import com.example.projectfigma.DAO.ProductInCartDAO
+import com.example.projectfigma.Entites.Basket
+import com.example.projectfigma.Entites.ProductInCart
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
@@ -28,14 +33,15 @@ import kotlinx.coroutines.launch
 import java.util.Date
 
 @Database(
-    entities = [User::class, Dishes::class, Session::class, AppSettings::class],
-    version = 10
+    entities = [User::class, Dishes::class, Session::class, AppSettings::class,Basket::class,ProductInCart::class],
+    version = 11
 )
 @TypeConverters(
     ConvertersToDateTime::class,
     ConvertToDishesCategory::class,
     ConvertersList::class,
-    SessionConverters::class
+    SessionConverters::class,
+    ConvertersDishes::class
 )
 abstract class DataBase : RoomDatabase() {
 
@@ -43,6 +49,8 @@ abstract class DataBase : RoomDatabase() {
     abstract fun getDishesDao(): DishesDao
     abstract fun getSessionDao(): SessionDao
     abstract fun getSettingsDao(): SettingsDao
+    abstract fun getBasketDao(): BasketDAO
+    abstract fun getProductInCartDAO(): ProductInCartDAO
 
     companion object {
         @Volatile
@@ -57,7 +65,7 @@ abstract class DataBase : RoomDatabase() {
                 password = "1111",
                 mobileNumber = "818412481",
                 dateOfBirth = Date(),
-                favoriteDishesId = listOf(1,2,3)
+                favoriteDishesId = listOf(1, 2, 3)
             )
         )
 

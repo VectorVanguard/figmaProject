@@ -1,6 +1,5 @@
 package com.example.projectfigma.Activity
 
-import android.content.Intent
 import android.os.Bundle
 import android.widget.ImageView
 import android.widget.TextView
@@ -15,9 +14,9 @@ import com.example.projectfigma.DAO.DishesDao
 import com.example.projectfigma.DAO.SessionDao
 import com.example.projectfigma.DAO.UserDao
 import com.example.projectfigma.DataBase.DataBase
-import com.example.projectfigma.Entites.Dishes
 import com.example.projectfigma.Entites.User
 import com.example.projectfigma.Fragments.*
+import com.example.projectfigma.Fragments.Cart.CartFragment
 import com.example.projectfigma.R
 import com.example.projectfigma.Util.StatusBar
 import com.example.projectfigma.Util.SwitchCard
@@ -42,7 +41,6 @@ class HomeActivity : AppCompatActivity(),
         userDao = db.getUserDao()
         sessionDao = db.getSessionDao()
         user = (sessionDao.getSession()?.user ?: null)!!
-
         drawer = findViewById<DrawerLayout>(R.id.drawer_layout)
 
         adapter = BestSellerAdapter(emptyList()) { item ->
