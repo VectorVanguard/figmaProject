@@ -45,7 +45,7 @@ class Recommend : Fragment(R.layout.fragment_recommend) {
 
             withContext(Dispatchers.Main) {
                 db.getDishesDao()
-                    .getRecommend()
+                    .getRecommendLimit(2)
                     .observe(viewLifecycleOwner) { list ->
                         val adapter = RecommendAdapter(list,
                             switchToSelfPage = { item ->

@@ -34,7 +34,7 @@ import java.util.Date
 
 @Database(
     entities = [User::class, Dishes::class, Session::class, AppSettings::class,Basket::class,ProductInCart::class],
-    version = 11
+    version = 12
 )
 @TypeConverters(
     ConvertersToDateTime::class,

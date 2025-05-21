@@ -97,6 +97,7 @@ class FoodDetailActivity : AppCompatActivity() {
     }
 
     private fun updateTotalPrice() {
+        val dish = intent.getParcelableExtra<Dishes>("dish")
         val price  = dish?.price ?: 0.0
         val total  = price * quantity
         binding.textPrice.text = "$${"%.2f".format(total)}"

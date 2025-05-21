@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@android:color/white"
+    android:padding="16dp">
+
+    <!-- =========== 1. Order Summary =========== -->
+    <TextView
+        android:id="@+id/tvSectionOrderSummary"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Order Summary"
+        android:textColor="#332211"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/imageView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="58dp"
+        android:layout_height="13dp"
+        android:src="@drawable/edit_button"
+        app:cornerRadius="12dp"
+        app:layout_constraintBaseline_toBaselineOf="@id/tvSectionOrderSummary"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/tvOrderItemsSummary"
+        android:layout_width="0dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="8dp"
+        android:overScrollMode="never"
+        android:layout_marginEnd="20dp"
+        app:layout_constraintEnd_toStartOf="@+id/tvOrderTotal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvSectionOrderSummary" />
+
+    <!-- Разделитель -->
+
+    <TextView
+        android:id="@+id/tvOrderTotal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="4dp"
+        android:text="$40.00"
+        android:textColor="#332211"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/divider1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView"
+        app:layout_constraintVertical_bias="0.005" />
+
+    <View
+        android:id="@+id/divider1"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:layout_marginVertical="12dp"
+        android:background="#FFDDCC"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvOrderItemsSummary" />
+
+
+    <!-- =========== 2. Payment Method =========== -->
+    <TextView
+        android:id="@+id/tvSectionPayment"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:text="Payment Method"
+        android:textColor="#332211"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/btnEditPayment"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/divider1" />
+
+
+    <!-- Иконка + "Credit Card" + номер в пиле -->
+
+    <ImageView
+        android:id="@+id/btnEditPayment"
+        android:layout_width="58dp"
+        android:layout_height="13dp"
+        android:layout_marginEnd="4dp"
+        android:backgroundTint="#FFE6D9"
+        android:insetLeft="12dp"
+        android:insetTop="4dp"
+        android:insetRight="12dp"
+        android:insetBottom="4dp"
+        android:src="@drawable/edit_button"
+        android:text="Edit"
+        android:textColor="#CC6633"
+        app:cornerRadius="12dp"
+        app:layout_constraintBottom_toTopOf="@+id/tvCardNumber"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/divider1"
+        app:layout_constraintVertical_bias="0.173" />
+
+    <ImageView
+        android:id="@+id/ivPaymentIcon"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_marginTop="8dp"
+        android:src="@drawable/ic_credit_card"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvSectionPayment" />
+
+    <!-- Разделитель -->
+
+    <TextView
+        android:id="@+id/tvPaymentMethod"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:text="Credit Card"
+
+        android:textColor="#332211"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toTopOf="@+id/divider2"
+        app:layout_constraintStart_toEndOf="@+id/ivPaymentIcon"
+        app:layout_constraintTop_toBottomOf="@+id/tvSectionPayment"
+        app:layout_constraintVertical_bias="0.32" />
+
+    <TextView
+        android:id="@+id/tvCardNumber"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:background="@drawable/pill_background_light"
+        android:paddingHorizontal="12dp"
+        android:layout_marginStart="20dp"
+        android:paddingVertical="4dp"
+        android:text="*** *** *** 43/00/000"
+        android:textColor="#332211"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/tvPaymentMethod"
+        app:layout_constraintTop_toBottomOf="@+id/tvSectionPayment" />
+
+    <View
+        android:id="@+id/divider2"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:layout_marginVertical="12dp"
+        android:background="#FFDDCC"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvCardNumber" />
+
+
+    <!-- =========== 3. Delivery Time =========== -->
+    <TextView
+        android:id="@+id/tvSectionDelivery"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:text="Delivery Time"
+        android:textColor="#332211"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/divider2" />
+
+    <TextView
+        android:id="@+id/tvEstimatedLabel"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Estimated Delivery"
+        android:textColor="#332211"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toStartOf="@+id/tvEstimatedValue"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvSectionDelivery" />
+
+    <TextView
+        android:id="@+id/tvEstimatedValue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="25 mins"
+        android:textColor="#CC6633"
+        android:textSize="16sp"
+        app:layout_constraintBaseline_toBaselineOf="@id/tvEstimatedLabel"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,22 +1,23 @@
 package com.example.projectfigma.Fragments.Cart
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.projectfigma.Activity.ConfirmOrderActivity
 import com.example.projectfigma.Adapters.CartAdapter
 import com.example.projectfigma.DataBase.DataBase
-import com.example.projectfigma.Entites.Dishes
 import com.example.projectfigma.Entites.ProductInCart
 import com.example.projectfigma.R
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import org.w3c.dom.Text
 
 class FullCartFragment : Fragment(R.layout.fragment_full_cart) {
     companion object {
@@ -31,12 +32,14 @@ class FullCartFragment : Fragment(R.layout.fragment_full_cart) {
     private val items = mutableListOf<ProductInCart>()
     private lateinit var recycler: RecyclerView
     private lateinit var countProducts: TextView
+    private lateinit var checkout: ImageView
     private lateinit var adapter : CartAdapter
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         recycler = view.findViewById(R.id.rv_cart_items)
         countProducts = view.findViewById(R.id.full_title)
+        checkout = view.findViewById(R.id.checkout)
         recycler.layoutManager = LinearLayoutManager(requireContext())
 
         arguments
@@ -46,6 +49,10 @@ class FullCartFragment : Fragment(R.layout.fragment_full_cart) {
         countProducts.text = String.format("You have ${items.size} items in the cart")
 
         updateTotals()
+
+        checkout.setOnClickListener(){
+            openActivity(ConfirmOrderActivity::class.java)
+        }
 
         adapter = CartAdapter(items) { product, newQty ->
             lifecycleScope.launch {
@@ -61,6 +68,12 @@ class FullCartFragment : Fragment(R.layout.fragment_full_cart) {
             }
         }
         recycler.adapter = adapter
+    }
+
+    private fun <T> openActivity(activityClass: Class<T>) {
+        val ctx = requireContext()
+        val intent = Intent(ctx, activityClass)
+        startActivity(intent)
     }
 
     private fun updateTotals() {
