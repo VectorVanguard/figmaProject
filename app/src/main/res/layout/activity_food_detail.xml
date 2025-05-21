@@ -160,11 +160,13 @@
                 app:layout_constraintTop_toTopOf="parent">
 
                 <ImageView
+                    android:id="@+id/btnMinus"
                     android:layout_width="20dp"
                     android:layout_height="match_parent"
                     android:src="@drawable/ic_minus" />
 
                 <TextView
+                    android:id="@+id/tvQuantity"
                     android:layout_width="20dp"
                     android:layout_height="match_parent"
                     android:layout_weight="800"
@@ -174,6 +176,7 @@
                     android:textSize="20dp" />
 
                 <ImageView
+                    android:id="@+id/btnPlus"
                     android:layout_width="20dp"
                     android:layout_height="match_parent"
                     android:src="@drawable/ic_plus" />
@@ -189,14 +192,12 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/linearLayout1">
 
-            <fragment
-                android:id="@+id/as2"
-                android:name="com.example.projectfigma.Fragments.DividingLine"
+            <!-- вместо <fragment> — подключаем layout -->
+            <include
+                layout="@layout/fragment_dividing_line"
                 android:layout_width="350dp"
                 android:layout_height="match_parent"
-                android:layout_gravity="center"
-                tools:layout="@layout/fragment_dividing_line" />
-
+                android:layout_gravity="center"/>
         </FrameLayout>
 
 
@@ -464,7 +465,7 @@
         </LinearLayout>
 
         <ImageView
-            android:id="@+id/imageViewAddToCart"
+            android:id="@+id/addToCartButton"
             android:layout_width="180dp"
             android:layout_height="33dp"
             app:layout_constraintEnd_toEndOf="parent"

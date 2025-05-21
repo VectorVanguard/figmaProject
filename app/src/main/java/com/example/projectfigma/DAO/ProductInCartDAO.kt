@@ -6,17 +6,16 @@ import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import androidx.room.Update
 import com.example.projectfigma.Entites.Basket
-import com.example.projectfigma.Entites.Dishes
+import com.example.projectfigma.Entites.ProductInCart
 
 @Dao
-interface BasketDAO {
-
-//    @Query("SELECT * FROM baskets")
-//        fun getAll(): List<Basket>
+interface ProductInCartDAO {
+    @Query("SELECT * FROM productInCart")
+    fun getAll(): List<ProductInCart>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insert(item: Basket)
+    suspend fun insert(item: ProductInCart)
 
     @Update
-    suspend fun update(item: Basket)
+    suspend fun update(item: ProductInCart)
 }

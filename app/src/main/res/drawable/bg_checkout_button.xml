@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ripple xmlns:android="http://schemas.android.com/apk/res/android"
+    android:color="#40E94F1A">         <!-- полупрозрачный ripple -->
+
+    <item>
+        <shape android:shape="rectangle">
+            <solid android:color="#FFD97A"/>  <!-- светло-жёлтый фон -->
+            <corners android:radius="24dp"/>  <!-- радиус = половина высоты -->
+        </shape>
+    </item>
+</ripple>
