@@ -34,6 +34,10 @@
         <activity android:name=".Activity.BestSellerActivity" />
         <activity android:name=".Activity.AdverstsingPageActivity" />
         <activity android:name=".Activity.FiltersActivity"/>
+        <activity android:name=".Activity.OrderHelpActivity" />
+        <activity android:name=".Activity.HelpCenterActivity" />
+        <activity android:name=".Activity.HelpActivity" />
+
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
