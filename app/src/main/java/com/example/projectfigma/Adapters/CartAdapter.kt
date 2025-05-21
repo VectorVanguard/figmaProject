@@ -1,5 +1,6 @@
 package com.example.projectfigma.Adapters
 
+import android.os.Build
 import com.example.projectfigma.Entites.Dishes
 import com.example.projectfigma.R
 import java.util.Date
@@ -9,16 +10,38 @@ import android.view.ViewGroup
 import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.example.projectfigma.Entites.ProductInCart
 import java.text.SimpleDateFormat
+import java.time.format.DateTimeFormatter
 import java.util.Locale
 
 class CartAdapter(
-    private val onQuantityChange: (Dishes, Int) -> Unit
-) : ListAdapter<Dishes, CartAdapter.CartViewHolder>(DiffCallback()) {
+    private val items: List<ProductInCart>,
+    private val onQuantityChanged: (product: ProductInCart, newQty: Int) -> Unit
+) : RecyclerView.Adapter<CartAdapter.CartViewHolder>() {
+
+    inner class CartViewHolder(item: View) : RecyclerView.ViewHolder(item) {
+        val ivDish       : ImageView  = item.findViewById(R.id.ivDish)
+        val tvName       : TextView   = item.findViewById(R.id.tvName)
+        val tvPrice      : TextView   = item.findViewById(R.id.tvPrice)
+        val tvDateTime   : TextView   = item.findViewById(R.id.tvDateTime)
+        val tvQuantity   : TextView   = item.findViewById(R.id.tvQuantity)
+        val btnMinus     : ImageView= item.findViewById(R.id.btnMinus)
+        val btnPlus      : ImageView= item.findViewById(R.id.btnPlus)
+    }
+
+    companion object {
+        @RequiresApi(Build.VERSION_CODES.O)
+        private val date = DateTimeFormatter.ofPattern("dd/MM/yy")
+        @RequiresApi(Build.VERSION_CODES.O)
+        private val time = DateTimeFormatter.ofPattern("HH:mm")
+    }
+
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CartViewHolder {
         val view = LayoutInflater.from(parent.context)
@@ -26,44 +49,32 @@ class CartAdapter(
         return CartViewHolder(view)
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onBindViewHolder(holder: CartViewHolder, position: Int) {
-        holder.bind(getItem(position))
-    }
+        val product = items[position]
+        val dish = product.dish
 
-    inner class CartViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        private val ivImage: ImageView = itemView.findViewById(R.id.iv_cart_image)
-        private val tvName: TextView = itemView.findViewById(R.id.tv_cart_name)
-        private val tvDateTime: TextView = itemView.findViewById(R.id.tv_cart_datetime)
-        private val tvPrice: TextView = itemView.findViewById(R.id.tv_cart_price)
-        private val tvQuantity: TextView = itemView.findViewById(R.id.tv_cart_quantity)
-        private val btnMinus: ImageButton = itemView.findViewById(R.id.btn_cart_minus)
-        private val btnPlus: ImageButton = itemView.findViewById(R.id.btn_cart_plus)
+         Glide.with(holder.ivDish).load(dish.imageUri).into(holder.ivDish)
 
-        fun bind(item: Dishes) {
-            Glide.with(itemView)
-                .load(item.imageUri)
-                .into(ivImage)
+        holder.tvName.text     = dish.name
+        holder.tvPrice.text    = "$${"%.2f".format(dish.price)}"
 
-            tvName.text = item.name
-            tvDateTime.text = SimpleDateFormat("dd/MM/yy HH:mm", Locale.getDefault())
-                .format(Date())
-            tvPrice.text = "$${"%.2f".format(item.price)}"
-            tvQuantity.text = "1"
+        val okak = product.creationTime.format(date)
+        val kako = product.creationTime.format(time)
 
-            btnMinus.setOnClickListener {
-                onQuantityChange(item, -1)
-            }
-            btnPlus.setOnClickListener {
-                onQuantityChange(item, +1)
-            }
+        holder.tvDateTime.text = "$okak\n   $kako"
+        holder.tvQuantity.text = product.quantity.toString()
+
+        holder.btnMinus.setOnClickListener {
+            val newQty = (product.quantity - 1).coerceAtLeast(1)
+            onQuantityChanged(product, newQty)
+        }
+        holder.btnPlus.setOnClickListener {
+            val newQty = product.quantity + 1
+            onQuantityChanged(product, newQty)
         }
     }
 
-    private class DiffCallback : DiffUtil.ItemCallback<Dishes>() {
-        override fun areItemsTheSame(oldItem: Dishes, newItem: Dishes): Boolean =
-            oldItem.id == newItem.id
-
-        override fun areContentsTheSame(oldItem: Dishes, newItem: Dishes): Boolean =
-            oldItem == newItem
-    }
+    override fun getItemCount(): Int = items.size
 }
+
