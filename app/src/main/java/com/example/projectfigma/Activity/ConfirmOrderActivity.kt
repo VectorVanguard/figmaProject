@@ -1,6 +1,8 @@
 package com.example.projectfigma.Activity
 
+import android.content.Intent
 import android.os.Bundle
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -35,9 +37,19 @@ class ConfirmOrderActivity : AppCompatActivity() {
 
         updateTotals()
 
+        binding.placeOrder.setOnClickListener(){
+            openActivity(PaymentActivity::class.java)
+        }
+
         supportFragmentManager.beginTransaction()
             .replace(R.id.buttonPanel, BottomPanelFragment())
             .commit()
+    }
+
+    private fun <T> openActivity(activityClass: Class<T>) {
+        val ctx = this
+        val intent = Intent(ctx, activityClass)
+        startActivity(intent)
     }
 
     private fun updateTotals() {
