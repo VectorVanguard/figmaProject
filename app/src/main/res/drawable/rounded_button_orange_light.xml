@@ -1,0 +1,5 @@
+<!-- res/drawable/rounded_button_orange_light.xml -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <solid android:color="#FFE6D9"/>
+    <corners android:radius="16dp"/>
+</shape>

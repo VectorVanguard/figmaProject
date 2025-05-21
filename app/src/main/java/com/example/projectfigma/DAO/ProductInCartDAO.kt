@@ -1,6 +1,7 @@
 package com.example.projectfigma.DAO
 
 import androidx.room.Dao
+import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
@@ -18,4 +19,7 @@ interface ProductInCartDAO {
 
     @Update
     suspend fun update(item: ProductInCart)
+
+    @Delete
+    suspend fun delete(product: ProductInCart)
 }
