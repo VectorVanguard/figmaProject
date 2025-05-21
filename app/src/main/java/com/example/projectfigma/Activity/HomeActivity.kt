@@ -67,13 +67,6 @@ class HomeActivity : AppCompatActivity(),
             .beginTransaction()
             .replace(R.id.buttonPanel, BottomPanelFragment())
             .commit()
-
-        val filterButton = findViewById<ImageView>(R.id.filterIcon)
-        filterButton.setOnClickListener {
-            val intent = Intent(this, FiltersActivity::class.java)
-            startActivity(intent)
-            finish()
-        }
     }
 
     override fun onCartClicked() {
