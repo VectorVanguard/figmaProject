@@ -11,10 +11,12 @@ import android.view.ViewGroup
 import androidx.lifecycle.lifecycleScope
 import androidx.viewpager2.widget.ViewPager2
 import com.example.projectfigma.Activity.AdverstsingPageActivity
+import com.example.projectfigma.Activity.FoodDetailActivity
 import com.example.projectfigma.Activity.LogActivity
 import com.example.projectfigma.Adapters.PromoAdapter
 import com.example.projectfigma.DataBase.DataBase
 import com.example.projectfigma.R
+import com.example.projectfigma.Util.SwitchCard
 import com.example.projectfigma.databinding.FragmentBannerFoodBinding
 import com.example.projectfigma.databinding.FragmentBestSellerBinding
 import com.google.android.material.tabs.TabLayout
@@ -42,20 +44,19 @@ class BannerFood : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // 1) Инициализируем адаптер
-        promoAdapter = PromoAdapter(emptyList()) {
-            val intent = Intent(requireContext(), AdverstsingPageActivity::class.java)
-            startActivity(intent)
-            requireActivity().finish()
-        }
+        promoAdapter = PromoAdapter(emptyList(),
+            onBannerClick = {
+                val intent = Intent(requireContext(), AdverstsingPageActivity::class.java)
+                startActivity(intent)
+                requireActivity().finish()
+            }
+        )
         binding.viewPager.adapter = promoAdapter
 
-        // 2) Настраиваем TabLayoutMediator, сразу задаём иконки
         TabLayoutMediator(binding.tabLayout, binding.viewPager) { tab, _ ->
             tab.setIcon(com.example.projectfigma.R.drawable.tab_indicator_unselected)
         }.attach()
 
-        // 3) Слушаем смену вкладки для изменения иконки
         binding.tabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
             override fun onTabSelected(tab: TabLayout.Tab) {
                 tab.setIcon(com.example.projectfigma.R.drawable.tab_indicator_selected)
@@ -68,7 +69,6 @@ class BannerFood : Fragment() {
             override fun onTabReselected(tab: TabLayout.Tab) {}
         })
 
-        // 4) Автопрокрутка с помощью корутины
         viewLifecycleOwner.lifecycleScope.launch(Dispatchers.Main) {
             while (isActive) {
                 delay(4000)
@@ -79,7 +79,6 @@ class BannerFood : Fragment() {
             }
         }
 
-        // 5) Обновление списка из БД
         val dao = DataBase.getDb(requireContext()).getDishesDao()
         dao.getBestSellers().observe(viewLifecycleOwner) { list ->
             promoAdapter.updateList(list)

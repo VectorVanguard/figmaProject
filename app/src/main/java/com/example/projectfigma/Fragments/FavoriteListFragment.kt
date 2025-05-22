@@ -11,11 +11,13 @@
     import androidx.lifecycle.lifecycleScope
     import androidx.recyclerview.widget.GridLayoutManager
     import androidx.recyclerview.widget.RecyclerView
+    import com.example.projectfigma.Activity.FoodDetailActivity
     import com.example.projectfigma.Adapters.FavoriteFoodAdapter
     import com.example.projectfigma.DataBase.DataBase
     import com.example.projectfigma.Entites.Dishes
     import com.example.projectfigma.Entites.User
     import com.example.projectfigma.R
+    import com.example.projectfigma.Util.SwitchCard
     import com.example.projectfigma.databinding.FragmentBestSellerBinding
     import com.example.projectfigma.databinding.FragmentFavoriteListBinding
     import kotlinx.coroutines.Dispatchers
@@ -47,7 +49,6 @@
 
         override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
             super.onViewCreated(view, savedInstanceState)
-            // 1) Загрузить текущего пользователя из БД
             lifecycleScope.launch(Dispatchers.IO) {
                 currentUser = dataBase
                     .getUserDao().getUserByEmail(
@@ -60,21 +61,26 @@
             }
         }
         private fun setupRecycler() {
-            adapter = FavoriteFoodAdapter(mutableListOf()) { dish ->
+            adapter = FavoriteFoodAdapter(mutableListOf(),
+                onFavoriteClick = { dish ->
                 currentUser?.let { user ->
-                    // 2) Удаляем ID блюда из списка
                     val newList = user.favoriteDishesId.toMutableList()
                     newList.remove(dish.id.toInt())
                     user.favoriteDishesId = newList
-                    // 3) Сохраняем пользователя в БД и обновляем UI
                     lifecycleScope.launch(Dispatchers.IO) {
                         DataBase.getDb(requireContext()).getUserDao().updateUser(user)
                         val all = DataBase.getDb(requireContext()).getDishesDao().getAll()
                         val fav = all.filter { it.id.toInt() in newList }
                         withContext(Dispatchers.Main) { adapter.updateList(fav) }
-                    }
-                }
-            }
+                        }
+                    }},
+                    switchToSelfPage = { item ->
+                SwitchCard.switchDish(
+                    item,
+                    requireContext(),
+                    FoodDetailActivity::class.java
+                )
+            })
             binding.rvFoods.layoutManager = GridLayoutManager(requireContext(), 2)
             binding.rvFoods.adapter = adapter
         }

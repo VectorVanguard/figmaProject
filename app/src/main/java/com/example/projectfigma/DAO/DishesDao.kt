@@ -32,6 +32,9 @@ interface DishesDao {
     @Query("SELECT * FROM dishes b WHERE b.isRecommend = 1")
     fun getRecommend(): LiveData<List<Dishes>>
 
+    @Query("SELECT * FROM dishes b WHERE b.isRecommend = 1 LIMIT :limit")
+    fun getRecommendLimit(limit : Int): LiveData<List<Dishes>>
+
     @Query("SELECT * FROM dishes d WHERE d.id = :id")
     fun getDishById(id : Int) : Dishes
 
@@ -40,4 +43,25 @@ interface DishesDao {
 
     @Update
     suspend fun update(item: Dishes)
+
+    //Сортировка по популярности (например, по рейтингу)
+    @Query("SELECT * FROM dishes ORDER BY rating DESC")
+    fun getSortedByRating(): LiveData<List<Dishes>>
+
+    //Сортировка по цене (возрастание)
+    @Query("SELECT * FROM dishes ORDER BY price ASC")
+    fun getSortedByPriceAsc(): LiveData<List<Dishes>>
+
+    //Сортировка по цене (убывание)
+    @Query("SELECT * FROM dishes ORDER BY price DESC")
+    fun getSortedByPriceDesc(): LiveData<List<Dishes>>
+
+    @Query("SELECT * FROM Dishes ORDER BY rating DESC")
+    suspend fun getAllSortedByRating(): List<Dishes>
+
+    @Query("SELECT * FROM Dishes ORDER BY price ASC")
+    suspend fun getAllSortedByPrice(): List<Dishes>
+
+    @Query("SELECT * FROM Dishes ORDER BY ordersCount DESC")
+    suspend fun getAllSortedByPopularity(): List<Dishes>
 }

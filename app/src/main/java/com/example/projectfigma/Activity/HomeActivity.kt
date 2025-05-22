@@ -1,6 +1,7 @@
 package com.example.projectfigma.Activity
 
 import android.os.Bundle
+import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -10,13 +11,15 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.projectfigma.Adapters.BestSellerAdapter
 import com.example.projectfigma.DAO.DishesDao
+import com.example.projectfigma.DAO.SessionDao
 import com.example.projectfigma.DAO.UserDao
 import com.example.projectfigma.DataBase.DataBase
-import com.example.projectfigma.Entites.Dishes
 import com.example.projectfigma.Entites.User
 import com.example.projectfigma.Fragments.*
+import com.example.projectfigma.Fragments.Cart.CartFragment
 import com.example.projectfigma.R
 import com.example.projectfigma.Util.StatusBar
+import com.example.projectfigma.Util.SwitchCard
 
 class HomeActivity : AppCompatActivity(),
     HeaderButtonsFragment.Listener {
@@ -24,43 +27,37 @@ class HomeActivity : AppCompatActivity(),
     private lateinit var adapter: BestSellerAdapter
     private lateinit var dao: DishesDao
     private lateinit var userDao: UserDao
+    private lateinit var sessionDao: SessionDao
     private lateinit var drawer: DrawerLayout
-
-    private var user: User? = null
+    private lateinit var user: User
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
         StatusBar.hideStatusBar(window)
 
-        drawer = findViewById(R.id.drawer_layout)
-
         val db = DataBase.getDb(this)
         dao = db.getDishesDao()
         userDao = db.getUserDao()
+        sessionDao = db.getSessionDao()
+        user = (sessionDao.getSession()?.user ?: null)!!
+        drawer = findViewById<DrawerLayout>(R.id.drawer_layout)
 
-        val email = intent.getStringExtra("user_email")
-        if (!email.isNullOrBlank()) {
-            user = userDao.getUserByEmail(email)
+        adapter = BestSellerAdapter(emptyList()) { item ->
+            SwitchCard.switchDish(
+                item,
+                this,
+                FoodDetailActivity::class.java
+            )
         }
-
         val rv = findViewById<RecyclerView>(R.id.rvBestSellers).apply {
             layoutManager = LinearLayoutManager(
                 this@HomeActivity,
                 LinearLayoutManager.HORIZONTAL,
                 false
             )
-            adapter = BestSellerAdapter(emptyList()) { item: Dishes ->
-                Toast.makeText(
-                    this@HomeActivity,
-                    "Clicked: ${item.price}",
-                    Toast.LENGTH_SHORT
-                ).show()
-            }.also { this@HomeActivity.adapter = it }
+            adapter = this@HomeActivity.adapter
         }
-
-
-
 
         dao.getBestSellersWithLimit(4).observe(this) { list ->
             adapter.updateList(list)

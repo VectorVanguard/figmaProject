@@ -7,11 +7,13 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.projectfigma.Activity.FoodDetailActivity
 import com.example.projectfigma.Adapters.MainBestSellerAdapter
 import com.example.projectfigma.DAO.DishesDao
 import com.example.projectfigma.DataBase.DataBase
 import com.example.projectfigma.Entites.Dishes
 import com.example.projectfigma.R
+import com.example.projectfigma.Util.SwitchCard
 
 class MainBestSeller : Fragment(R.layout.fragment_main_best_seller) {
 
@@ -34,7 +36,15 @@ class MainBestSeller : Fragment(R.layout.fragment_main_best_seller) {
         dishesDao = database.getDishesDao()
 
         dishesDao.getBestSellers().observe(viewLifecycleOwner) { dishList ->
-            adapter = MainBestSellerAdapter(dishList)
+            adapter = MainBestSellerAdapter(dishList,
+                switchToSelfPage = { item ->
+                    SwitchCard.switchDish(
+                        item,
+                        requireContext(),
+                        FoodDetailActivity::class.java
+                    )
+                }
+            )
             recyclerView.adapter = adapter
         }
     }

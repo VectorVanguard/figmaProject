@@ -11,7 +11,8 @@ import com.example.projectfigma.Entites.Dishes
 import com.example.projectfigma.R
 
 class RecommendAdapter (
-    private val items: List<Dishes>
+    private val items: List<Dishes>,
+    private val switchToSelfPage: (Dishes) -> Unit
 ) : RecyclerView.Adapter<RecommendAdapter.VH>() {
 
     inner class VH(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -23,6 +24,7 @@ class RecommendAdapter (
             Glide.with(itemView).load(food.imageUri).into(ivFood)
             tvRating.text = String.format("%.1f", food.rating)
             tvPrice.text = "$${String.format("%.2f", food.price)}"
+            itemView.setOnClickListener { switchToSelfPage(food) }
         }
     }
 

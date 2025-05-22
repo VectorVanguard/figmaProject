@@ -11,7 +11,10 @@ import com.bumptech.glide.Glide
 import com.example.projectfigma.Entites.Dishes
 import com.example.projectfigma.R
 
-class MainBestSellerAdapter (private var dishes: List<Dishes>) :
+class MainBestSellerAdapter (
+    private var dishes: List<Dishes>,
+    private val switchToSelfPage: (Dishes) -> Unit
+) :
     RecyclerView.Adapter<MainBestSellerAdapter.DishViewHolder>() {
 
     inner class DishViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -31,7 +34,6 @@ class MainBestSellerAdapter (private var dishes: List<Dishes>) :
     override fun onBindViewHolder(holder: DishViewHolder, position: Int) {
         val dish  = dishes[position]
 
-        // Используем Glide для загрузки изображения
         Glide.with(holder.itemView.context)
             .load(Uri.parse(dish.imageUri))
             .into(holder.image)
@@ -41,6 +43,8 @@ class MainBestSellerAdapter (private var dishes: List<Dishes>) :
         holder.description.text = dish.description
         holder.price.text = "$${dish.price}"
         holder.rating.text = "${dish.rating}"
+
+        holder.itemView.setOnClickListener { switchToSelfPage(dish) }
     }
 
     override fun getItemCount(): Int = dishes.size

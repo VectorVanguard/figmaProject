@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_marginVertical="8dp"
+    android:layout_width="match_parent"
+    app:cardCornerRadius="16dp"
+    app:strokeColor="@android:color/transparent"
+    app:cardElevation="0dp"
+    android:layout_height="wrap_content">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:padding="2dp">
+        <ImageView
+            android:id="@+id/ivDish"
+            android:layout_width="67dp"
+            android:layout_height="115dp"
+
+            android:layout_marginStart="12dp"
+            android:src="@drawable/burger"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tvName"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="36dp"
+            android:text="Strawberry Shake"
+            android:textColor="#332211"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toEndOf="@+id/ivDish"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tvPrice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:layout_marginEnd="12dp"
+            android:text="$20.00"
+            android:textColor="#CC6633"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toEndOf="@+id/tvName"
+            app:layout_constraintTop_toBottomOf="@+id/btnMinus" />
+
+
+        <!-- 7. Счётчик минус/плюс -->
+
+        <TextView
+            android:id="@+id/tvDateTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="4dp"
+            android:text="29 Nov, 15:20 pm"
+            android:textColor="#666666"
+            android:textSize="12sp"
+            app:layout_constraintStart_toEndOf="@+id/ivDish"
+            app:layout_constraintTop_toBottomOf="@+id/tvName" />
+
+        <TextView
+            android:id="@+id/tvItemCount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="12dp"
+            android:text="2 items"
+            android:textColor="#666666"
+            android:textSize="12sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.977"
+            app:layout_constraintStart_toEndOf="@+id/tvDateTime"
+            app:layout_constraintTop_toBottomOf="@+id/tvPrice" />
+
+        <!-- 8. Разделитель внизу -->
+
+        <ImageView
+            android:id="@+id/btnCancelOrder"
+            android:layout_width="110dp"
+            android:layout_height="20dp"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="12dp"
+            android:src="@drawable/cansel_order_button"
+            android:textColor="#CC6633"
+            app:layout_constraintStart_toEndOf="@+id/ivDish"
+            app:layout_constraintTop_toBottomOf="@+id/tvDateTime" />
+
+        <ImageView
+            android:id="@+id/btnMinus"
+            android:layout_width="8dp"
+            android:layout_height="12dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginEnd="12dp"
+
+            android:src="@drawable/ic_minus_circle"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <View
+            android:layout_width="407dp"
+            android:layout_height="1dp"
+            android:background="#FFDDCC"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <LinearLayout
+            android:layout_width="52dp"
+            android:layout_height="27dp"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.92"
+            app:layout_constraintStart_toEndOf="@+id/btnCancelOrder"
+            app:layout_constraintTop_toBottomOf="@+id/tvItemCount"
+            app:layout_constraintVertical_bias="0.25">
+
+            <ImageView
+                android:id="@+id/minus"
+                android:layout_width="20dp"
+                android:layout_height="match_parent"
+                android:src="@drawable/ic_minus" />
+
+            <TextView
+                android:id="@id/tvQuantity"
+                android:layout_width="20dp"
+                android:layout_height="match_parent"
+                android:layout_weight="800"
+                android:gravity="center"
+                android:text="1"
+                android:textColor="@color/black"
+                android:textSize="20dp" />
+
+            <ImageView
+                android:id="@+id/plus"
+                android:layout_width="20dp"
+                android:layout_height="match_parent"
+                android:src="@drawable/ic_plus" />
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.cardview.widget.CardView>

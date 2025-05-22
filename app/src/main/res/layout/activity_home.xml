@@ -21,31 +21,52 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
-            <EditText
-                android:id="@+id/passwordEditText"
-                android:layout_width="166dp"
-                android:layout_height="38dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginEnd="16dp"
-                android:autofillHints="fffffffffffffffffff"
+            <LinearLayout
+                android:layout_width="186dp"
+                android:layout_height="35dp"
+                android:layout_marginBottom="40dp"
                 android:background="@drawable/search_background"
-                android:drawableEnd="@drawable/filter"
-                android:hint="@string/search"
-                android:inputType="textPassword"
-                android:padding="10dp"
-                android:paddingEnd="10dp"
-                android:textColor="#3B1B0E"
-
-                android:textColorHint="@color/shadow_black"
-                android:textSize="16sp"
-
-                app:layout_constraintBottom_toTopOf="@+id/textView"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-
-                app:layout_constraintHorizontal_bias="0.07"
+                app:layout_constraintHorizontal_bias="0.15"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="1.0" />
+                app:layout_constraintVertical_bias="0.65999997">
+
+                <EditText
+                    android:id="@+id/passwordEditText"
+                    android:layout_width="111dp"
+                    android:layout_height="38dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:autofillHints="fffffffffffffffffff"
+                    android:background="@drawable/search_background"
+                    android:hint="@string/search"
+                    android:inputType="textPassword"
+                    android:padding="10dp"
+                    android:paddingEnd="10dp"
+                    android:textColor="#3B1B0E"
+
+                    android:textColorHint="@color/shadow_black"
+                    android:textSize="16sp"
+
+                    app:layout_constraintBottom_toTopOf="@+id/textView"
+                    app:layout_constraintEnd_toEndOf="parent"
+
+                    app:layout_constraintHorizontal_bias="0.07"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="1.0" />
+
+                <ImageView
+                    android:id="@+id/filterIcon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:contentDescription="TODO"
+                    android:src="@drawable/filter" />
+            </LinearLayout>
 
             <TextView
                 android:id="@+id/textView"
@@ -54,7 +75,8 @@
                 android:layout_marginBottom="2dp"
                 android:text="Good Morning"
                 android:textColor="@color/white"
-                android:textSize="25dp"
+                android:textSize="25sp"
+                android:textStyle="bold"
                 app:layout_constraintBottom_toTopOf="@+id/textView2"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.15"
@@ -68,6 +90,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
                 android:text="Rise and shine! It's breakfast time"
+                android:textSize="13sp"
                 android:textColor="@color/organe"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -92,7 +115,7 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="414dp"
-            android:layout_height="587dp"
+            android:layout_height="0dp"
             android:paddingLeft="50dp"
             android:paddingRight="50dp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -105,6 +128,7 @@
                 android:id="@+id/food_category_frame"
                 android:layout_width="wrap_content"
                 android:layout_height="77dp"
+                android:layout_marginTop="20dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
@@ -173,8 +197,8 @@
             </FrameLayout>
 
             <FrameLayout
-                android:layout_width="313dp"
-                android:layout_height="wrap_content"
+                android:layout_width="315dp"
+                android:layout_height="189dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"

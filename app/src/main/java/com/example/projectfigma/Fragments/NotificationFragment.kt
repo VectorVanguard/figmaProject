@@ -8,6 +8,5 @@ import com.example.projectfigma.R
 class NotificationFragment : Fragment(R.layout.fragment_notifications) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        // TODO: здесь можно динамически заполнить список уведомлений через RecyclerView или просто оставить статично
     }
 }

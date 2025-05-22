@@ -22,6 +22,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Jumbo (12 Slides)"
+            android:textColor="@color/black"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -39,6 +40,7 @@
         <TextView
             android:id="@+id/tvJumboPrice"
             android:layout_width="wrap_content"
+            android:textColor="@color/black"
             android:layout_height="wrap_content"
             android:text="$10.00"
             app:layout_constraintBottom_toBottomOf="@+id/tvJumboSeparator"
@@ -81,8 +83,8 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
-            android:layout_width="16dp"
-            android:layout_height="16dp"
+            android:layout_width="21dp"
+            android:layout_height="22dp"
             android:layout_marginStart="7dp"
             android:src="@drawable/ic_heart_in_circle"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -255,20 +257,24 @@
     </FrameLayout>
 
     <!-- Description -->
+
     <TextView
         android:id="@+id/zopa"
+        android:textColor="@color/black"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Nazvanie"
-        android:textSize="16dp"
+        android:textSize="18dp"
         android:textStyle="bold"
-        app:layout_constraintTop_toBottomOf="@+id/dividingLine2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.086"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/dividingLine2" />
 
     <TextView
         android:id="@+id/textView4"
         android:layout_width="350dp"
+        android:textColor="@color/black"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
         android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore."
@@ -276,18 +282,21 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
+    <!-- Familiar (10 Slides) -->
     <TextView
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:textColor="@color/black"
         android:text="Personal portion"
-        android:textSize="16dp"
+        android:textSize="18dp"
         android:textStyle="bold"
-        app:layout_constraintTop_toBottomOf="@+id/textView4"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.103"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/textView4" />
 
-    <!-- Familiar (10 Slides) -->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayoutFamiliar"
         android:layout_width="wrap_content"
@@ -302,6 +311,7 @@
             android:id="@+id/tvFamiliarTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textColor="@color/black"
             android:text="Familiar (10 Slides)"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -320,6 +330,8 @@
         <TextView
             android:id="@+id/tvFamiliarPrice"
             android:layout_width="wrap_content"
+            android:textColor="@color/black"
+
             android:layout_height="wrap_content"
             android:text="$6.00"
             app:layout_constraintStart_toEndOf="@id/tvFamiliarSeparator"
@@ -344,6 +356,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Personal (4 Slides)"
+            android:textColor="@color/black"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"/>
@@ -362,6 +375,7 @@
             android:id="@+id/tvPersonalPrice"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textColor="@color/black"
             android:text="$0.00"
             app:layout_constraintStart_toEndOf="@id/tvPersonalSeparator"
             app:layout_constraintTop_toTopOf="@id/tvPersonalSeparator"
@@ -382,6 +396,7 @@
 
         <TextView
             android:id="@+id/tvMediumTitle"
+            android:textColor="@color/black"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Medium (8 Slides)"
@@ -402,6 +417,7 @@
         <TextView
             android:id="@+id/tvMediumPrice"
             android:layout_width="wrap_content"
+            android:textColor="@color/black"
             android:layout_height="wrap_content"
             android:text="$3.00"
             app:layout_constraintStart_toEndOf="@id/tvMediumSeparator"
