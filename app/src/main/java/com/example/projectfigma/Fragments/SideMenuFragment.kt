@@ -1,5 +1,6 @@
 package com.example.projectfigma.Fragments
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.ImageView
@@ -10,6 +11,9 @@ import androidx.annotation.IdRes
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
+import com.example.projectfigma.Activity.DeliveryAddressActivity
+import com.example.projectfigma.Activity.HomeActivity
+import com.example.projectfigma.Activity.ProfileUpdateActivity
 import com.example.projectfigma.Activity.WelcomeActivity
 import com.example.projectfigma.R
 
@@ -58,12 +62,14 @@ class SideMenuFragment : Fragment(R.layout.fragment_side_menu) {
 
     private fun onProfileClicked() {
         Toast.makeText(requireContext(), "Профиль открыт", Toast.LENGTH_SHORT).show()
-        // TODO: добавить логику перехода в профиль
+        startActivity(android.content.Intent(requireContext(), ProfileUpdateActivity::class.java))
+        requireActivity().finish()
     }
 
     private fun onAddressClicked() {
         Toast.makeText(requireContext(), "Адрес доставки открыт", Toast.LENGTH_SHORT).show()
-        // TODO: добавить логику перехода к адресам доставки
+        startActivity(android.content.Intent(requireContext(), DeliveryAddressActivity::class.java))
+        requireActivity().finish()
     }
 
     private fun onPaymentsClicked() {

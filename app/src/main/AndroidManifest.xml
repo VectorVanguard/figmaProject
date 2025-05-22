@@ -30,6 +30,9 @@
         <activity android:name=".Activity.FavoritesActivity" />
         <activity android:name=".Activity.BestSellerActivity" />
         <activity android:name=".Activity.AdverstsingPageActivity" />
+        <activity android:name=".Activity.DeliveryAddressActivity" />
+        <activity android:name=".Activity.AddAddressActivity" />
+        <activity android:name=".Activity.ProfileUpdateActivity" />
 
         <meta-data
             android:name="preloaded_fonts"

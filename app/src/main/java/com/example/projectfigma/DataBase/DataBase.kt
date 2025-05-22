@@ -13,10 +13,12 @@ import com.example.projectfigma.DAO.DishesDao
 import com.example.projectfigma.DAO.SettingsDao
 import com.example.projectfigma.DAO.SessionDao
 import com.example.projectfigma.DAO.UserDao
+import com.example.projectfigma.DAO.AddressDao
 import com.example.projectfigma.Entites.AppSettings
 import com.example.projectfigma.Entites.Dishes
 import com.example.projectfigma.Entites.Session
 import com.example.projectfigma.Entites.User
+import com.example.projectfigma.Entites.Address
 import com.example.projectfigma.Enums.DishCategory
 import com.example.projectfigma.R
 import com.example.projectfigma.Converters.ConvertersToDateTime
@@ -27,8 +29,8 @@ import kotlinx.coroutines.launch
 import java.util.Date
 
 @Database(
-    entities = [User::class, Dishes::class, Session::class, AppSettings::class],
-    version = 6
+    entities = [User::class, Dishes::class, Session::class, AppSettings::class, Address::class],
+    version = 7
 )
 @TypeConverters(
     ConvertersToDateTime::class,
@@ -41,12 +43,27 @@ abstract class DataBase : RoomDatabase() {
     abstract fun getDishesDao(): DishesDao
     abstract fun getSessionDao(): SessionDao
     abstract fun getSettingsDao(): SettingsDao
+    abstract fun getAddressDao(): AddressDao
 
     companion object {
         @Volatile
         private var INSTANCE: DataBase? = null
 
         private val applicationScope = CoroutineScope(SupervisorJob() + Dispatchers.IO)
+
+        private fun prepopulateAddresses(userId: Int) = listOf(
+            Address(
+                userId = userId,
+                name = "Дом",
+                address = "778 Locust View Drive, Oakland, CA",
+                isDefault = true
+            ),
+            Address(
+                userId = userId,
+                name = "Работа",
+                address = "123 Business Ave, San Francisco, CA"
+            )
+        )
 
         private fun prepopulateUsers(): List<User> = listOf(
             User(
