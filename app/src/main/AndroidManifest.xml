@@ -51,7 +51,9 @@
         <activity android:name=".Activity.OrderHelpActivity" />
         <activity android:name=".Activity.HelpCenterActivity" />
         <activity android:name=".Activity.HelpActivity" />
-
+        <activity android:name=".Activity.DeliveryAddressActivity" />
+        <activity android:name=".Activity.AddAddressActivity" />
+        <activity android:name=".Activity.ProfileUpdateActivity" />
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
