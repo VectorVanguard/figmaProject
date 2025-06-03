@@ -14,12 +14,16 @@ import java.util.Calendar
 import java.util.Date
 import android.app.DatePickerDialog
 import android.widget.Toast
+import com.example.projectfigma.DAO.SessionDao
+import com.example.projectfigma.Fragments.BottomPanelFragment
+import com.example.projectfigma.R
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
 class ProfileUpdateActivity : AppCompatActivity() {
     private lateinit var binding: ActivityProfileUpdateBinding
     private lateinit var userDao: UserDao
+    private lateinit var sessionDao: SessionDao
     private lateinit var user: User
     private val dateFormatter = SimpleDateFormat("dd / MM / yyyy", Locale.getDefault())
 
@@ -31,11 +35,9 @@ class ProfileUpdateActivity : AppCompatActivity() {
         val db = DataBase.getDb(this)
 
         userDao = db.getUserDao()
+        sessionDao = db.getSessionDao()
 
-        val email = intent.getStringExtra("user_email")
-        if (!email.isNullOrBlank()) {
-            user = userDao.getUserByEmail(email)
-        }
+        user = sessionDao.getSession()?.user!!
 
         // Загрузка данных пользователя
         loadUserData()
@@ -47,22 +49,19 @@ class ProfileUpdateActivity : AppCompatActivity() {
         binding.updateProfileButton.setOnClickListener {
             updateProfile()
         }
+
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.bottomPanel, BottomPanelFragment())
+            .commit()
     }
 
     private fun loadUserData() {
         lifecycleScope.launch {
-            // Получаем ID текущего пользователя из сессии
-            val session = DataBase.getDb(this@ProfileUpdateActivity).getSessionDao().getSession()
-            session?.userEmail?.let { email ->
-                user = userDao.getUserByEmail(email) ?: return@launch
-
-                // Заполняем поля данными пользователя
-                with(binding) {
-                    fullNameValue.setText(user.name)
-                    dobValue.setText(user.gmail)
-                    emailValue.setText(user.mobileNumber)
-                    phoneValue.setText(dateFormatter.format(user.dateOfBirth))
-                }
+            with(binding) {
+                fullNameValue.setText(user.name)
+                dobValue.setText(dateFormatter.format(user.dateOfBirth))
+                emailValue.setText(user.gmail)
+                phoneValue.setText(user.mobileNumber)
             }
         }
     }
@@ -105,6 +104,9 @@ class ProfileUpdateActivity : AppCompatActivity() {
                 user.dateOfBirth = dob
 
                 userDao.updateUser(user)
+                val session = sessionDao.getSession()
+                session?.user = user
+                sessionDao.updateSession(session!!)
 
                 withContext(Dispatchers.Main) {
                     Toast.makeText(
@@ -112,7 +114,6 @@ class ProfileUpdateActivity : AppCompatActivity() {
                         "Profile updated successfully",
                         Toast.LENGTH_SHORT
                     ).show()
-                    finish()
                 }
             }
         } catch (e: Exception) {

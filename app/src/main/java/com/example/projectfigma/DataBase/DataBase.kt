@@ -35,8 +35,8 @@ import kotlinx.coroutines.launch
 import java.util.Date
 
 @Database(
-    entities = [User::class, Dishes::class, Session::class, AppSettings::class,Basket::class,ProductInCart::class],
-    version = 12
+    entities = [User::class, Dishes::class, Session::class, AppSettings::class,Basket::class,ProductInCart::class, Address::class],
+    version = 13
 )
 @TypeConverters(
     ConvertersToDateTime::class,

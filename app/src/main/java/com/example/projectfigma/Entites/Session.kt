@@ -8,5 +8,5 @@ data class Session(
     @PrimaryKey val id: Int = 0,      // единственная запись
     val isLoggedIn: Boolean,
     val userEmail: String?, // email или null
-    val user: User?
+    var user: User?
 )

@@ -4,7 +4,9 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
+import androidx.room.Update
 import com.example.projectfigma.Entites.Session
+import com.example.projectfigma.Entites.User
 
 @Dao
 interface SessionDao {
@@ -16,4 +18,7 @@ interface SessionDao {
 
     @Query("DELETE FROM session")
     suspend fun clear()
+
+    @Update
+    fun updateSession(session: Session)
 }

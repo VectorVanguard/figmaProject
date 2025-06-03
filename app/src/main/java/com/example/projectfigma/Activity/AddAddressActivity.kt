@@ -8,6 +8,7 @@ import com.example.projectfigma.databinding.ActivityAddAddressBinding
 import com.example.projectfigma.DAO.UserDao
 import android.widget.Toast
 import androidx.lifecycle.lifecycleScope
+import com.example.projectfigma.DAO.SessionDao
 import com.example.projectfigma.Entites.User
 import kotlinx.coroutines.launch
 
@@ -16,6 +17,7 @@ class AddAddressActivity : AppCompatActivity() {
     private lateinit var addressRepository: AddressRepository
 
     private lateinit var userDao: UserDao
+    private lateinit var sessionDao: SessionDao
     private var user: User? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -27,11 +29,9 @@ class AddAddressActivity : AppCompatActivity() {
         val db = DataBase.getDb(this)
         addressRepository = AddressRepository(db.getAddressDao())
         userDao = db.getUserDao()
+        sessionDao = db.getSessionDao()
+        user = sessionDao.getSession()?.user
 
-        val email = intent.getStringExtra("user_email")
-        if (!email.isNullOrBlank()) {
-            user = userDao.getUserByEmail(email)
-        }
 
         setupUI()
     }

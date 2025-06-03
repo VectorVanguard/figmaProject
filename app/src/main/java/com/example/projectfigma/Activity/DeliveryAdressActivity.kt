@@ -13,8 +13,10 @@ import com.example.projectfigma.Entites.Address
 import android.view.LayoutInflater
 import android.widget.ImageView
 import android.widget.RadioButton
+import com.example.projectfigma.DAO.SessionDao
 import com.example.projectfigma.DAO.UserDao
 import com.example.projectfigma.Entites.User
+import com.example.projectfigma.Fragments.BottomPanelFragment
 import com.example.projectfigma.R
 
 class DeliveryAddressActivity : AppCompatActivity() {
@@ -23,6 +25,7 @@ class DeliveryAddressActivity : AppCompatActivity() {
     private lateinit var addressAdapter: AddressAdapter
 
     private lateinit var userDao: UserDao
+    private lateinit var sessionDao: SessionDao
     private var user: User? = null
     var currentUserId: Int = 1
 
@@ -36,12 +39,8 @@ class DeliveryAddressActivity : AppCompatActivity() {
         addressRepository = AddressRepository(db.getAddressDao())
 
         userDao = db.getUserDao()
-
-        val email = intent.getStringExtra("user_email")
-        if (!email.isNullOrBlank()) {
-            user = userDao.getUserByEmail(email)
-        }
-
+        sessionDao = db.getSessionDao()
+        user = sessionDao.getSession()?.user
         currentUserId = user?.id!!
 
         // Настройка кнопки "Добавить адрес"
@@ -53,6 +52,9 @@ class DeliveryAddressActivity : AppCompatActivity() {
         binding.exitArrow.setOnClickListener {
             finish()
         }
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.bottomPanel, BottomPanelFragment())
+            .commit()
 
         // Загрузка адресов
         loadAddresses()
